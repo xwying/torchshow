@@ -1,8 +1,0 @@
-README.md
-setup.py
-tensorshow/__init__.py
-tensorshow/tensorshow.py
-tensorshow.egg-info/PKG-INFO
-tensorshow.egg-info/SOURCES.txt
-tensorshow.egg-info/dependency_links.txt
-tensorshow.egg-info/top_level.txt
