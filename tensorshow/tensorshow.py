@@ -25,7 +25,13 @@ def show(x, display=True, **kwargs):
         x = x.copy()
         nrows = kwargs.get('nrows', None)
         ncols = kwargs.get('ncols', None)
-        channel_mode = kwargs.get('channel_mode', 'channel_first')
+        channel_mode = kwargs.get('channel_mode', 'auto')
+        if channel_mode == 'auto':
+            if x.shape[-1] in [1,2,3]:
+                channel_mode = 'channel_last'
+            else:
+                channel_mode = 'channel_first'
+                
         if x.ndim == 4: # (N, C, H, W) like array
             if channel_mode == 'channel_first':
                 N, _, H, W = x.shape
@@ -136,7 +142,7 @@ def show_video(x, display=True, **kwargs):
         video_vis_list.append(frames_at_t)
         
     if display:
-        animate_plt(video_vis_list, **kwargs)
+        return animate_plt(video_vis_list, **kwargs)
         
 
 def visualize(x, 
@@ -181,5 +187,7 @@ def infer_mode(x):
             mode = 'grayscale'
         if isinteger(np.unique(x)).all(): # If values are all integer
             mode = 'categorical_mask'
+        else:
+            mode = 'grayscale'
     return mode
 

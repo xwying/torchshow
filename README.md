@@ -2,11 +2,9 @@
 
 `Note: The package is still under development and may have many bugs.`
 
-A python package that visualize your data in one line of code. 
+Tensorshow visualizes your data in one line of code. It is developed to helped debugging Computer Vision project.
 
 Tensorshow automatically infers the type of a tensor such as RGB images, grayscale images, binary masks, categorical masks (automatically apply color palette), etc. and perform necessary unnormalization if needed. 
-
-It is developed mainly to help debugging pytorch code. 
 
 
 # Installation
@@ -21,13 +19,14 @@ TODO: support installation via pip.
 
 # Usage 
 
-## One line code visualization
+## Basic Usage
 ```python
 import tensorshow as ts
-
-tensor = # some pytorch tensor that can be visualized. 
-ts.show(tensor)
+ts.show(tensor) # Visualize a tensor in one-line
 ```
+
+## Examples
+Please check out the tutorial for more examples.
 
 ## Use in notebook
 By default the ts.show() will call `plt.imshow()` followed by `plt.show()` to display the result. When using notebook environment with `%inline` display enabled. Running the following code will tell tensorshow to not run `plt.show()`.

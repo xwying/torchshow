@@ -107,10 +107,11 @@ def animate_plt(video_list, **kwargs):
     # if tight_layout:
     #     fig.tight_layout()
     
-    ani = animation.FuncAnimation(fig, run, video_list, blit=True, interval=1, repeat=True)
+    ani = animation.FuncAnimation(fig, run, video_list, blit=True, interval=5, repeat=True)
     
     if not config.get('inline'):
         plt.show()
+    return ani
 
 
 def auto_unnormalize_image(x):
@@ -223,6 +224,7 @@ def vis_categorical_mask(x, max_N=256, **kwargs):
     assert (len(x.shape) == 3) and (x.shape[-1] == 1)
     assert isinteger(np.unique(x)).all(), "Input has to contain only integers in categorical mask mode."
     
+    x = np.squeeze(x, -1)
     N = int(x.max()) + 1
     
     if x.max() > max_N:

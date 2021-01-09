@@ -20,7 +20,12 @@ feature_maps = torch.rand((64, 32, 32))
 # ts.show(feature_maps, nrows=4)
 
 # ts.show(feature_maps, title_pattern="channel {img_id_from_1}")
+# ts.show(test_grayscale)
+# ts.show(test_category_mask)
 
-video1 = torch.rand((10, 3, 100, 100))
+video1 = torch.rand((8, 3, 100, 100))
 video2 = torch.rand((15, 3, 100, 100))
-ts.show_video([[video1, video2], [video1, video2]])
+
+ts.show_video(video2)
+# ts.show(video1)
+# ts.show_video([[video1, video2], [video1, video2]])

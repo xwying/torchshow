@@ -30,11 +30,11 @@ def calculate_grid_layout(N, img_H, img_W, nrow=None, ncol=None):
     else:
         N_sqrt = np.sqrt(N)
         if img_H >= img_W:
-            ncol = int(np.ceil(N_sqrt))
             nrow = int(np.floor(N_sqrt))
+            ncol = int(np.ceil(N/nrow))
         else:
             ncol = int(np.floor(N_sqrt))
-            nrow = int(np.ceil(N_sqrt))
+            nrow = int(np.ceil(N/ncol))
     return nrow, ncol
     
     
@@ -53,4 +53,6 @@ def tensor_to_array(x):
 
 
 if __name__ == '__main__':
-    print(auto_grid_layout(np.ones((26, 100, 100, 3))))
+    for N in range(1,100):
+        row, col = calculate_grid_layout(N, 10, 10)
+        print(N, row, col, row*col)

@@ -1,7 +1,8 @@
 .vscode/
 # Byte-compiled / optimized / DLL files
 __pycache__/
-
+*.ipynb
+._*
 
 # Distribution / packaging
 build/
