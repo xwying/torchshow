@@ -38,14 +38,23 @@ ts.show(tensor)
 
 ### Table of Contents
 [Visualizing Image Tensor](#1-visualizing-image-tensor)
+
 [Visualizing Mask Tensors](#2-visualizing-mask-tensors)
+
 [Visualizing Batch of Tensors](#3-visualizing-batch-of-tensors)
+
 [Visualizing Feature Maps](#4-visualizing-feature-maps)
+
 [Visualizing Multiple Tensors with Custom Layout.](#5-visualizing-multiple-tensors-with-custom-layout)
+
 [Visualizing Tensors as Video Clip](#6-visualizing-tensors-as-video-clip)
+
 [Display Video Animation in Jupyter Notebook](#7-display-video-animation-in-jupyter-notebook)
+
 [Set Inline Display in Notebook](#8-set-inline-display-in-notebook)
+
 [Configurate Channel Order (RGB/BGR)](#9-configurate-channel-order-rgbbgr)
+
 [Configurate Unnormalization Presets](#10-configurate-unnormalization-presets)
 
 ### 1. Visualizing Image Tensor
