@@ -37,25 +37,16 @@ ts.show(tensor)
 ## Examples
 
 ### Table of Contents
-[Visualizing Image Tensor](#1-visualizing-image-tensor)
-
-[Visualizing Mask Tensors](#2-visualizing-mask-tensors)
-
-[Visualizing Batch of Tensors](#3-visualizing-batch-of-tensors)
-
-[Visualizing Feature Maps](#4-visualizing-feature-maps)
-
-[Visualizing Multiple Tensors with Custom Layout.](#5-visualizing-multiple-tensors-with-custom-layout)
-
-[Visualizing Tensors as Video Clip](#6-visualizing-tensors-as-video-clip)
-
-[Display Video Animation in Jupyter Notebook](#7-display-video-animation-in-jupyter-notebook)
-
-[Set Inline Display in Notebook](#8-set-inline-display-in-notebook)
-
-[Configurate Channel Order (RGB/BGR)](#9-configurate-channel-order-rgbbgr)
-
-[Configurate Unnormalization Presets](#10-configurate-unnormalization-presets)
+- [Visualizing Image Tensor](#1-visualizing-image-tensor)
+- [Visualizing Mask Tensors](#2-visualizing-mask-tensors)
+- [Visualizing Batch of Tensors](#3-visualizing-batch-of-tensors)
+- [Visualizing Channels in Feature Maps](#4-visualizing-feature-maps)
+- [Visualizing Multiple Tensors with Custom Layout.](#5-visualizing-multiple-tensors-with-custom-layout)
+- [Visualizing Tensors as Video Clip](#6-visualizing-tensors-as-video-clip)
+- [Display Video Animation in Jupyter Notebook](#7-display-video-animation-in-jupyter-notebook)
+- [Set Inline Display in Notebook](#8-set-inline-display-in-notebook)
+- [Change Channel Order (RGB/BGR)](#9-change-channel-order-rgbbgr)
+- [Change Unnormalization Presets](#10-change-unnormalization-presets)
 
 ### 1. Visualizing Image Tensor
 Visualizing an image-like tensor is not difficult but could be very tedious. You usually need to convert the tensor to numpy array with proper shapes. In many cases images were normalized during dataloader, which means that you have to unnormalize it so it can be displayed correctly.
@@ -135,13 +126,13 @@ By default the ts.show() will call `plt.imshow()` followed by `plt.show()` to di
 import tensorshow as ts
 ts.use_inline(True)
 ```
-### 9. Configurate Channel Order (RGB/BGR)
+### 9. Change Channel Order (RGB/BGR)
 By default tensorflow visualize image tensor in the RGB mode, you can switch the setting to BGR in case you are using opencv to load the image.
 ```python
 ts.set_color_mode('bgr)
 ```
 
-### 10. Configurate Unnormalization Presets
+### 10. Change Unnormalization Presets
 The image tensor may have been preprocessed with a normalization function. If not specified, tensorshow will automatically rescale it to 0-1. 
 
 
