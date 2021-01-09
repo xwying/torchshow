@@ -5,9 +5,8 @@ import warnings
 
 from .visualization import vis_image, vis_grayscale, vis_categorical_mask, vis_flow, display_plt, animate_plt
 from .utils import isinteger, calculate_grid_layout, tensor_to_array
-# from tensorshow import config_dict
 
-logger = logging.getLogger('TensorShow')
+logger = logging.getLogger('TorchShow')
 logger.setLevel(logging.INFO)
 
 vis_func_dict = dict(image=vis_image,
@@ -158,7 +157,7 @@ def visualize(x,
     
     if auto_permute:
         if (ndim == 3) and (shape[0] in [1, 2, 3]): # For C, H, W kind of array.
-            logger.debug('Detected input shape {} is in CHW format, TensorShow will automatically convert it to HWC format'.format(shape))
+            logger.debug('Detected input shape {} is in CHW format, TorchShow will automatically convert it to HWC format'.format(shape))
             x = np.transpose(x, (1,2,0))
 
     if ndim == 2:

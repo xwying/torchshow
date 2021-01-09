@@ -1,4 +1,4 @@
-import tensorshow as ts
+import torchshow as ts
 import torch 
 
 ts.use_inline(False)
