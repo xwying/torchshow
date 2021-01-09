@@ -37,16 +37,16 @@ ts.show(tensor)
 ## Examples
 
 ### Table of Contents
-[Visualizing Image Tensor](#visualizing-image-tensor)
-[Visualizing Mask Tensors](#visualizing-mask-tensors)
-[Visualizing Batch of Tensors](#visualizing-batch-of-tensors)
-[Visualizing Feature Maps](#visualizing-feature-maps)
-[Visualizing Multiple Tensors with Custom Layout.](#visualizing-multiple-tensors-with-custom-layout)
-[Visualizing Tensors as Video Clip](#visualizing-tensors-as-video-clip)
-[Display Video Animation in Jupyter Notebook](#display-video-animation-in-jupyter-notebook)
-[Set Inline Display in Notebook](#set-inline-display-in-notebook)
-[Configurate Channel Order (RGB/BGR)](#configurate-channel-order-rgbbgr)
-### 10. Configurate Unnormalization Presets (#configurate-unnormalization-presets)
+[Visualizing Image Tensor](#1-visualizing-image-tensor)
+[Visualizing Mask Tensors](#2-visualizing-mask-tensors)
+[Visualizing Batch of Tensors](#3-visualizing-batch-of-tensors)
+[Visualizing Feature Maps](#4-visualizing-feature-maps)
+[Visualizing Multiple Tensors with Custom Layout.](#5-visualizing-multiple-tensors-with-custom-layout)
+[Visualizing Tensors as Video Clip](#6-visualizing-tensors-as-video-clip)
+[Display Video Animation in Jupyter Notebook](#7-display-video-animation-in-jupyter-notebook)
+[Set Inline Display in Notebook](#8-set-inline-display-in-notebook)
+[Configurate Channel Order (RGB/BGR)](#9-configurate-channel-order-rgbbgr)
+[Configurate Unnormalization Presets](#10-configurate-unnormalization-presets)
 
 ### 1. Visualizing Image Tensor
 Visualizing an image-like tensor is not difficult but could be very tedious. You usually need to convert the tensor to numpy array with proper shapes. In many cases images were normalized during dataloader, which means that you have to unnormalize it so it can be displayed correctly.
