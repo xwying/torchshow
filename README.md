@@ -63,7 +63,7 @@ For projects related to Semantic Segmentation or Instance Segmentation, we often
 Using Matplotlib             |  Using TorchShow
 :-------------------------:|:-------------------------:
 ![](./imgs/cat_mask_plt.gif)  |  ![](./imgs/cat_mask_ts.gif)
-|The default color can hardly differentiate categories or instances. | TorchShow automatically apply color palletes during visualization.|
+| Different instances have same colors. Some categories are missing. | TorchShow automatically apply color palletes during visualization.|
 
 ### 3. Visualizing Batch of Tensors
 When the tensor is a batch of images, TorchShow will automatically create grid layout to visualize them. It is also possible to manually control the number of rows and columns.
