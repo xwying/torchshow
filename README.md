@@ -20,14 +20,13 @@ Torchshow automatically infers the type of a tensor such as RGB images, grayscal
 ## Installation
 
 ```bash
-git clone https://github.com/xwying/torchshow.git
-cd torchshow
-pip install .
+pip install torchshow
 ```
 
-- TODO: support installation via pip.
 
 ## Basic Usage
+
+The usage of TorchShow is extremely simple. Simply import the package and visualize your data in one line:
 
 ```python
 import torchshow as ts
@@ -74,7 +73,7 @@ When the tensor is a batch of images, TorchShow will automatically create grid l
 ### 4. Visualizing Feature Maps
 If the input tensor has more than 3 channels, TorchShow will visualize each of the channel similar to batch visualization. This is useful to visualize a feature map.
 
-![](./imgs/featuremaps.gif)
+![](./imgs/featuremap.gif)
 
 ### 5. Visualizing Multiple Tensors with Custom Layout.
 TorchShow has more flexibility to visualize multiple tensor using a custom layout.
@@ -93,7 +92,7 @@ ts.show([[tensor1, tensor2],
          [tensor3, tensor4, tensor5]])
 ```
 
-![](./imgs/custom_grid.gif)
+![](./imgs/custom_layout.gif)
 
 ### 6. Visualizing Tensors as Video Clip
 Tensors can be visualized as video clips, which very helpful if the tensor is a sequence of frames. This can be done using `show_video` function.
@@ -120,7 +119,7 @@ HTML(ani.to_jshtml())
 ```
 
 ### 8. Set Inline Display in Notebook
-By default the ts.show() will call `plt.imshow()` followed by `plt.show()` to display the result. When using notebook environment with `%inline` display enabled. Running the following code will tell torchshow to not run `plt.show()`.
+By default the ts.show() will call `plt.show()` to display the image. When using notebook environment, this step may not be needed. Running the following code will tell TorchShow to not run `plt.show()`.
 
 ```python
 import torchshow as ts
