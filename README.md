@@ -4,18 +4,18 @@ Tensorshow visualizes your data in one line of code. It is developed to helped d
 
 Tensorshow automatically infers the type of a tensor such as RGB images, grayscale images, binary masks, categorical masks (automatically apply color palette), etc. and perform necessary unnormalization if needed. 
 
-Supported Type:
+**Supported Type:**
 
 - [x] RGB Images
 - [x] Grayscale Images
 - [x] Binary Mask
 - [x] Categorical Mask (Integer Labels)
-- [ ] Optical Flows
 - [x] Multiple Images
 - [x] Videos
 - [x] Multiple Videos
+- [ ] Optical Flows
 
-`Note: The package is still under development and may have many bugs.`
+`Note: The package is still under development and may have bugs.`
 
 ## Installation
 
@@ -25,9 +25,10 @@ cd tensorshow
 pip install .
 ```
 
-TODO: support installation via pip.
+- TODO: support installation via pip.
 
 ## Basic Usage
+
 ```python
 import tensorshow as ts
 ts.show(tensor)
@@ -35,7 +36,19 @@ ts.show(tensor)
 
 ## Examples
 
-### Visualizing Image Tensor
+### Table of Contents
+[Visualizing Image Tensor](#visualizing-image-tensor)
+[Visualizing Mask Tensors](#visualizing-mask-tensors)
+[Visualizing Batch of Tensors](#visualizing-batch-of-tensors)
+[Visualizing Feature Maps](#visualizing-feature-maps)
+[Visualizing Multiple Tensors with Custom Layout.](#visualizing-multiple-tensors-with-custom-layout)
+[Visualizing Tensors as Video Clip](#visualizing-tensors-as-video-clip)
+[Display Video Animation in Jupyter Notebook](#display-video-animation-in-jupyter-notebook)
+[Set Inline Display in Notebook](#set-inline-display-in-notebook)
+[Configurate Channel Order (RGB/BGR)](#configurate-channel-order-rgbbgr)
+### 10. Configurate Unnormalization Presets (#configurate-unnormalization-presets)
+
+### 1. Visualizing Image Tensor
 Visualizing an image-like tensor is not difficult but could be very tedious. You usually need to convert the tensor to numpy array with proper shapes. In many cases images were normalized during dataloader, which means that you have to unnormalize it so it can be displayed correctly.
 
 If you need to frequently verify how your image tensors look like, TensorShow is a very helpful tool. 
@@ -45,7 +58,7 @@ Using Matplotlib             |  Using TensorShow
 ![](./imgs/RGB_image_plt.gif)  |  ![](./imgs/RGB_image_ts.gif)
 |The image tensor has been normalized so Matlotlib cannot display it correctly. | TensorShow does the conversion automatically.|
 
-### Visualizing Mask Tensors
+### 2. Visualizing Mask Tensors
 For projects related to Semantic Segmentation or Instance Segmentation, we often need to visualize mask tensors -- either ground truth annotations or model's prediction. This can be easily done using TensorShow.
 
 Using Matplotlib             |  Using TensorShow
@@ -53,17 +66,17 @@ Using Matplotlib             |  Using TensorShow
 ![](./imgs/cat_mask_plt.gif)  |  ![](./imgs/cat_mask_ts.gif)
 |The default color can hardly differentia different categories or instances. | TensorShow automatically apply color palletes during visualization.|
 
-### Visualizing Batch of Tensors
+### 3. Visualizing Batch of Tensors
 When the tensor is a batch of images, TensorShow will automatically create grid layout to visualize them. It is also possible to manually control the number of rows and columns.
 
 ![](./imgs/batch_imgs.gif)
 
-### Visualizing Feature Maps
+### 4. Visualizing Feature Maps
 If the input tensor has more than 3 channels, TensorShow will visualize each of the channel similar to batch visualization. This is useful to visualize a feature map.
 
 ![](./imgs/featuremaps.gif)
 
-### Visualizing Multiple Tensors with Custom Layout.
+### 5. Visualizing Multiple Tensors with Custom Layout.
 TensorShow has more flexibility to visualize multiple tensor using a custom layout.
 
 To control the layout, put the tensors in list of list as an 2D array. The following example will create a 2 x 3 grid layout.
@@ -82,7 +95,7 @@ ts.show([[tensor1, tensor2],
 
 ![](./imgs/custom_grid.gif)
 
-### Visualizing Tensors as Video Clip
+### 6. Visualizing Tensors as Video Clip
 Tensors can be visualized as video clips, which very helpful if the tensor is a sequence of frames. This can be done using `show_video` function.
 
 ```python
@@ -95,7 +108,7 @@ It is also possible to visualize multiple videos in a custom grid layout.
 
 ![](./imgs/video_grid.gif)
 
-### Display Video Animation in Jupyter Notebook
+### 7. Display Video Animation in Jupyter Notebook
 TensorShow visualizes video clips as an `matplotlib.func_animation` object and may not display in a notebook by default. The following example shows a simple trick to display it.
 
 ```python
@@ -106,20 +119,20 @@ ani = ts.show_video(video_tensor)
 HTML(ani.to_jshtml())
 ```
 
-### Set Inline Display in Notebook
+### 8. Set Inline Display in Notebook
 By default the ts.show() will call `plt.imshow()` followed by `plt.show()` to display the result. When using notebook environment with `%inline` display enabled. Running the following code will tell tensorshow to not run `plt.show()`.
 
 ```python
 import tensorshow as ts
 ts.use_inline(True)
 ```
-### Configurate Channel Order (RGB/BGR)
+### 9. Configurate Channel Order (RGB/BGR)
 By default tensorflow visualize image tensor in the RGB mode, you can switch the setting to BGR in case you are using opencv to load the image.
 ```python
 ts.set_color_mode('bgr)
 ```
 
-### Configurate Unnormalization Presets
+### 10. Configurate Unnormalization Presets
 The image tensor may have been preprocessed with a normalization function. If not specified, tensorshow will automatically rescale it to 0-1. 
 
 
