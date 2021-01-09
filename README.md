@@ -1,6 +1,6 @@
 # TensorShow
 
-Tensorshow visualizes your data in one line of code. It is developed to helped debugging Computer Vision project.
+Tensorshow visualizes your data in one line of code. It is designed to help debugging Computer Vision project.
 
 Tensorshow automatically infers the type of a tensor such as RGB images, grayscale images, binary masks, categorical masks (automatically apply color palette), etc. and perform necessary unnormalization if needed. 
 
@@ -64,7 +64,7 @@ For projects related to Semantic Segmentation or Instance Segmentation, we often
 Using Matplotlib             |  Using TensorShow
 :-------------------------:|:-------------------------:
 ![](./imgs/cat_mask_plt.gif)  |  ![](./imgs/cat_mask_ts.gif)
-|The default color can hardly differentia different categories or instances. | TensorShow automatically apply color palletes during visualization.|
+|The default color can hardly differentiate categories or instances. | TensorShow automatically apply color palletes during visualization.|
 
 ### 3. Visualizing Batch of Tensors
 When the tensor is a batch of images, TensorShow will automatically create grid layout to visualize them. It is also possible to manually control the number of rows and columns.
