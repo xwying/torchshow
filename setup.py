@@ -11,7 +11,7 @@ setuptools.setup(
     description="Visualizing tensor data in one line of code.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="",
+    url="https://github.com/xwying/tensorshow",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
