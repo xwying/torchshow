@@ -3,6 +3,7 @@ from matplotlib import colors, animation, pyplot as plt
 from PIL import Image
 from .utils import isinteger, within_0_1, within_0_255
 from .config import config
+from .flow import flow_to_color
 import warnings
 import logging
 
@@ -200,7 +201,9 @@ def vis_image(x, unnormalize='auto', **kwargs):
 
     
 def vis_flow(x, **kwargs):
-    pass
+    x = flow_to_color(x)
+    plot_cfg = dict()
+    return x, plot_cfg
 
 
 def vis_grayscale(x, **kwargs):
