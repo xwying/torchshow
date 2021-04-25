@@ -13,9 +13,13 @@ Torchshow automatically infers the type of a tensor such as RGB images, grayscal
 - [x] Multiple Images
 - [x] Videos
 - [x] Multiple Videos
-- [ ] Optical Flows
+- [x] Optical Flows (powered by [flow_vis](https://github.com/tomrunia/OpticalFlow_Visualization))
 
-`Note: The package is still under development and may have bugs.`
+
+
+## Changelogs
+- v0.3.0 Adding optical flow support.
+
 
 ## Installation
 
