@@ -18,7 +18,8 @@ Torchshow automatically infers the type of a tensor such as RGB images, grayscal
 
 
 ## Changelogs
-- v0.3.0 Adding optical flow support.
+- [2021-06-14] v0.3.1 Now support headless mode useful for running on server without display. After setting `ts.headless(True)`, calling `ts.show(tensor)` will save the figure under `./_torchshow/`.
+- [2021-04-25] v0.3.0 Adding optical flow support.
 
 
 ## Installation

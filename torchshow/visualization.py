@@ -6,6 +6,8 @@ from .config import config
 from .flow import flow_to_color
 import warnings
 import logging
+from datetime import datetime
+import os
 
 
 logger = logging.getLogger('TensorShow')
@@ -61,8 +63,15 @@ def display_plt(vis_list, **kwargs):
     if tight_layout:
         fig.tight_layout()
     
+    if config.get('headless'):
+        os.makedirs('_torchshow', exist_ok=True)
+        cur_time = datetime.now().strftime("%Y%m%d-%H%M%S-%f")
+        plt.savefig('_torchshow/'+cur_time+'.png')
+    
     if not config.get('inline'):
         plt.show()
+    
+    
         
 
 def animate_plt(video_list, **kwargs):
@@ -150,7 +159,7 @@ def unnormalize(x, mean=None, std=None):
     assert (len(mean) == C) and (len(std) == C), "Number of mean and std values must equals to number of channels."
     
     for i in range(C):
-        x[:,:,i] = x[:,:,i] * mean[i] - std[i]
+        x[:,:,i] = x[:,:,i] * std[i] + mean[i]
         
     return x
         

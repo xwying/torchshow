@@ -15,7 +15,7 @@ vis_func_dict = dict(image=vis_image,
                      flow=vis_flow)
 
 
-def show(x, display=True, **kwargs):
+def show(x, display=True, save=False, **kwargs):
     vis_list = None
     
     x = tensor_to_array(x)

@@ -5,6 +5,7 @@ class Config():
                             'image_mean': None,
                             'image_std': None,
                             'color_mode': 'rgb',
+                            'headless': False
                             } 
 
     def set(self, key, value):
@@ -15,6 +16,12 @@ class Config():
         return self.config_dict.get(key, None)
 
 config = Config()
+
+def headless(value: bool):
+    if value:
+        config.set('headless', True)
+    else:
+        config.set('headless', False)
 
 def use_inline(value: bool):
     if value:

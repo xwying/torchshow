@@ -1,4 +1,5 @@
 .vscode/
+_torchshow/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.ipynb
