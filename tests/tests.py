@@ -13,8 +13,9 @@ test_category_mask = torch.randint(-1, 25, (1, 10, 10))
 # ts.show(test_category_mask)
 
 test_flow = torch.rand((2, 100, 100))
-ts.headless(True)
-ts.show(test_flow)
+# ts.headless(True)
+ts.save(test_flow)
+ts.save(test_flow, './test_fig/vis/test.png')
 
 # feature_maps = torch.rand((64, 32, 32))
 

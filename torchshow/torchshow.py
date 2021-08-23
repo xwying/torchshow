@@ -14,8 +14,11 @@ vis_func_dict = dict(image=vis_image,
                      categorical_mask=vis_categorical_mask,
                      flow=vis_flow)
 
+def save(x, path=None):
+    show(x, save=True, file_path=path)
 
-def show(x, display=True, save=False, **kwargs):
+
+def show(x, display=True, **kwargs):
     vis_list = None
     
     x = tensor_to_array(x)

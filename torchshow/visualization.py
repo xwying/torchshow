@@ -63,10 +63,17 @@ def display_plt(vis_list, **kwargs):
     if tight_layout:
         fig.tight_layout()
     
-    if config.get('headless'):
-        os.makedirs('_torchshow', exist_ok=True)
-        cur_time = datetime.now().strftime("%Y%m%d-%H%M%S-%f")
-        plt.savefig('_torchshow/'+cur_time+'.png')
+    if kwargs.get('save', False):
+        file_path = kwargs.get('file_path', None)
+        if file_path is None:
+            os.makedirs('_torchshow', exist_ok=True)
+            cur_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S-%f")
+            file_path = '_torchshow/'+cur_time+'.png'
+        dirname = os.path.dirname(file_path)
+        if dirname != '':
+            os.makedirs(dirname, exist_ok=True)
+        plt.savefig(file_path, bbox_inches = 'tight', pad_inches=0)
+        return
     
     if not config.get('inline'):
         plt.show()

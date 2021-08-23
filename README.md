@@ -18,7 +18,8 @@ Torchshow automatically infers the type of a tensor such as RGB images, grayscal
 
 
 ## Changelogs
-- [2021-06-14] v0.3.1 Fixes some bugs. Now support headless mode useful for running on server without display. After setting `ts.headless(True)`, calling `ts.show(tensor)` will save the figure under `./_torchshow/`.
+- [2021-08-23] v0.3.2 Adding `ts.save(tensor)` API for saving figs instead of showing them. This is more convenient compared to the headless mode. Remove white spaces of the saved figures. ts.headless() is now removed.
+- [2021-06-14] v0.3.1 Fixes some bugs. Now support headless mode useful for running on server without display. ~~After setting `ts.headless(True)`, calling `ts.show(tensor)` will save the figure under `./_torchshow/`~~.
 - [2021-04-25] v0.3.0 Adding optical flow support.
 
 
@@ -36,6 +37,14 @@ The usage of TorchShow is extremely simple. Simply import the package and visual
 ```python
 import torchshow as ts
 ts.show(tensor)
+```
+
+If you work on a headless server without display. You can use `ts.save(tensor)` command (since version 0.3.2).
+
+```python
+import torchshow as ts
+ts.save(tensor) # Figure will be saved under ./_torchshow/***.png
+ts.save(tensor, './vis/test.jpg') # You can specify the save path.
 ```
 
 ## Examples

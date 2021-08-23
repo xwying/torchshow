@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="torchshow", # Replace with your own username
-    version="0.3.1",
+    version="0.3.2",
     author="Xiaowen Ying",
     author_email="xiaowenying93@gmail.com",
     description="Visualizing pytorch tensor in one line of code.",
