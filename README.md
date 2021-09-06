@@ -99,7 +99,7 @@ ts.show([[tensor1, tensor2, tensor3],
          [tensor4, tensor5, tensor6]])
 ```
 
-It is worth mentioning that it is necessary to fill up all the places in the grid. The following example visualizes 5 tensors in a 2 x 3 grid layout.
+It is worth mentioning that there is no need to fill up all the places in the grid. The following example visualizes 5 tensors in a 2 x 3 grid layout.
 
 ```
 ts.show([[tensor1, tensor2],
@@ -142,7 +142,7 @@ ts.use_inline(True)
 ### 9. Change Channel Order (RGB/BGR)
 By default tensorflow visualize image tensor in the RGB mode, you can switch the setting to BGR in case you are using opencv to load the image.
 ```python
-ts.set_color_mode('bgr)
+ts.set_color_mode('bgr')
 ```
 
 ### 10. Change Unnormalization Presets
