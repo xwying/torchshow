@@ -1,4 +1,6 @@
-# TorchShow
+![TorchShow Logo](https://raw.githubusercontent.com/xwying/torchshow/master/imgs/torchshow.png)
+
+----
 
 Torchshow visualizes your data in one line of code. It is designed to help debugging Computer Vision project.
 
