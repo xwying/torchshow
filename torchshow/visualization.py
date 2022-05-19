@@ -1,6 +1,6 @@
 import numpy as np
 from matplotlib import colors, animation, pyplot as plt
-from PIL import Image
+# from PIL import Image
 from .utils import isinteger, within_0_1, within_0_255
 from .config import config
 from .flow import flow_to_color
