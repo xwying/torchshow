@@ -4,8 +4,6 @@ import torch
 import numpy as np
 import logging
 
-ts.use_inline(False)
-
 def read_flow(filename):
     with open(filename, 'rb') as f:
         magic = np.fromfile(f, np.float32, count=1)
