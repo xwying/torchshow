@@ -13,6 +13,9 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/xwying/torchshow",
     packages=setuptools.find_packages(),
+    install_requires=[
+        'numpy',
+        'matplotlib'],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
