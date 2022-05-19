@@ -1,7 +1,6 @@
 class Config():
     def __init__(self):
         self.config_dict = {'backend': 'matplotlib', # May support more backend in the future
-                            'inline': False, # Set it to true if using jupyter notebook
                             'image_mean': None,
                             'image_std': None,
                             'color_mode': 'rgb',
@@ -15,13 +14,6 @@ class Config():
         return self.config_dict.get(key, None)
 
 config = Config()
-
-
-def use_inline(value: bool):
-    if value:
-        config.set('inline', True)
-    else:
-        config.set('inline', False)
         
 def set_image_mean(mean: list):
     assert len(mean)==3
