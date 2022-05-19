@@ -142,5 +142,8 @@ def test(section):
             print(e)
 
 if __name__ == "__main__":
-    section = sys.argv[1]
+    if len(sys.argv) > 1:
+        section = sys.argv[1]
+    else:
+        section = 0
     test(int(section))
