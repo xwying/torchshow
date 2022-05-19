@@ -3,6 +3,7 @@ _torchshow/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.ipynb
+*.flo
 ._*
 
 # Distribution / packaging

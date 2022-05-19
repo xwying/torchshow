@@ -105,6 +105,7 @@ def show_video(x, display=True, **kwargs):
     if isinstance(x, (np.ndarray)):
         x = x.copy()
         assert x.ndim in [3,4], "only support 3D array (N, H, W) or 4D array (N, C, H, W) in video mode"
+        print(x.shape)
         video_list = [[x]] # for a single video, make it [[vid]]
         
     elif isinstance(x, list):
@@ -183,15 +184,17 @@ def infer_mode(x):
     ndim = len(shape)
     if shape[-1] == 3:
         mode = 'image'
-    if shape[-1] == 2:
+    elif shape[-1] == 2:
         mode = 'flow'
-    if shape[-1] == 1:
+    elif shape[-1] == 1:
         if (x.min() >= 0) and (x.max() <= 1):
             mode = 'grayscale'
         elif isinteger(np.unique(x)).all(): # If values are all integer
             mode = 'categorical_mask'
         else:
             mode = 'grayscale'
+    else:
+        raise NotImplementedError("Does support auto infer for shape {} .".format(shape))
     logger.debug("Auto Infer: {}".format(mode))
     return mode
 
