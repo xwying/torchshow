@@ -6,8 +6,9 @@ import warnings
 from .visualization import vis_image, vis_grayscale, vis_categorical_mask, vis_flow, display_plt, animate_plt
 from .utils import isinteger, calculate_grid_layout, tensor_to_array
 
+logging.basicConfig(level=logging.INFO)
+
 logger = logging.getLogger('TorchShow')
-logger.setLevel(logging.INFO)
 
 vis_func_dict = dict(image=vis_image,
                      grayscale=vis_grayscale,
@@ -187,9 +188,10 @@ def infer_mode(x):
     if shape[-1] == 1:
         if (x.min() >= 0) and (x.max() <= 1):
             mode = 'grayscale'
-        if isinteger(np.unique(x)).all(): # If values are all integer
+        elif isinteger(np.unique(x)).all(): # If values are all integer
             mode = 'categorical_mask'
         else:
             mode = 'grayscale'
+    logger.debug("Auto Infer: {}".format(mode))
     return mode
 

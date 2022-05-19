@@ -47,7 +47,7 @@ def tensor_to_array(x):
     elif isinstance(x, list):
         return [tensor_to_array(e) for e in x]
     else:
-        raise TypeError('Found unsupported type')
+        raise TypeError('Found unsupported type ', type(x))
 
 
 
