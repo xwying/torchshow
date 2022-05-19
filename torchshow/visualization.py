@@ -71,7 +71,7 @@ def display_plt(vis_list, **kwargs):
         dirname = os.path.dirname(file_path)
         if dirname != '':
             os.makedirs(dirname, exist_ok=True)
-        plt.savefig(file_path, bbox_inches = 'tight', pad_inches=0)
+        fig.savefig(file_path, bbox_inches = 'tight', pad_inches=0)
         return
     
     if not config.get('inline'):
