@@ -8,6 +8,8 @@ import warnings
 import logging
 from datetime import datetime
 import os
+import copy
+from numbers import Number
 
 
 logger = logging.getLogger('TorchShow')
@@ -36,6 +38,28 @@ def create_color_map(N=256, normalized=False):
     cmap = cmap/255 if normalized else cmap
     return cmap
 
+def imshow(ax, vis):
+    max_rows, max_cols = vis['raw'].shape[:2]
+    def format_coord(x, y):
+        """
+        We display x-y coordinate as integer.
+        """
+        col = int(x + 0.5)
+        row = int(y + 0.5)
+        if not (0<=col<max_cols and 0<=row<max_rows):
+            return ""
+        raw_data = vis['raw'][row, col]
+        try:
+            raw_data[0]
+        except (TypeError, IndexError):
+            raw_data = [raw_data]
+        raw_data_str = ', '.join('{:0.3g}'.format(item) for item in raw_data
+                                 if isinstance(item, Number))
+        return 'Mode='+vis['mode'] + ', Shape='+vis['shape'] + ', X=%1d, Y=%1d, ' % (col, row) + 'Raw= [' + raw_data_str + '], Display=' 
+    
+    ax.imshow(vis['disp'], **vis['plot_cfg'])
+    ax.format_coord = format_coord
+
 
 def display_plt(vis_list, **kwargs):
     nrows = len(vis_list)
@@ -49,8 +73,9 @@ def display_plt(vis_list, **kwargs):
     fig, axes = plt.subplots(nrows=nrows, ncols=ncols, squeeze=False)
     
     for i, plots_per_row in enumerate(vis_list):
-        for j, (vis, plot_cfg) in enumerate(plots_per_row):
-            axes[i, j].imshow(vis, **plot_cfg)
+        for j, vis in enumerate(plots_per_row):
+            # axes[i, j].imshow(vis, **plot_cfg)
+            imshow(axes[i,j], vis)
             title_namespace["img_id"] = i*ncols+j
             title_namespace["img_id_from_1"] = title_namespace["img_id"] + 1
             if show_title:
@@ -99,9 +124,9 @@ def animate_plt(video_list, **kwargs):
     
     # Initialization
     for i, plots_per_row in enumerate(video_list[0]):
-        for j, (vis, plot_cfg) in enumerate(plots_per_row):
+        for j, vis in enumerate(plots_per_row):
             if vis is not None:
-                plot = axes[i, j].imshow(vis, **plot_cfg)
+                plot = axes[i, j].imshow(vis['disp'], **vis['plot_cfg'])
                 plots.append(plot)
             else:
                 plots.append(None)
@@ -112,11 +137,11 @@ def animate_plt(video_list, **kwargs):
     
     def run(frames_at_t):
         for i, plots_per_row in enumerate(frames_at_t):
-            for j, (vis, plot_cfg) in enumerate(plots_per_row):
+            for j, vis in enumerate(plots_per_row):
                 # axes[i, j].imshow(vis, **plot_cfg)
                 if vis is not None:
                     # axes[i,j].figure.canvas.draw()
-                    plots[i*ncols+j].set_data(vis)
+                    plots[i*ncols+j].set_data(vis['disp'])
         fig.canvas.draw()
         return plots
            
@@ -178,6 +203,9 @@ def vis_image(x, unnormalize='auto', **kwargs):
     : std: image std for unnormalization
     : display: whether to display image using matplotlib
     """
+    vis = dict()
+    vis['raw'] = copy.deepcopy(x)
+    vis['shape'] = str(x.shape)
     shape = x.shape
     ndim = len(shape)
     assert ndim == 3, "vis_image only support 3D array in (H, W, C) format."
@@ -209,40 +237,60 @@ def vis_image(x, unnormalize='auto', **kwargs):
     
     if config.get('color_mode') == 'bgr':
         x = x[:,:,::-1]
+        vis['mode'] = 'Image(BGR)'
+    else:
+        vis['mode'] = 'Image(RGB)'
     
     plot_cfg = dict()
     
-    return x, plot_cfg
+    vis['disp'] = x
+    vis['plot_cfg'] = plot_cfg
+    return vis
 
     
 def vis_flow(x, **kwargs):
+    vis = dict()
+    vis['raw'] = copy.deepcopy(x)
+    vis['shape'] = str(x.shape)
     x = flow_to_color(x)
     plot_cfg = dict()
-    return x, plot_cfg
+    vis['disp'] = x
+    vis['plot_cfg'] = plot_cfg
+    vis['mode'] = 'Flow'
+    return vis
 
 
 def vis_grayscale(x, **kwargs):
+    vis = dict()
     assert (len(x.shape) == 3) and (x.shape[-1] == 1)
     x = np.squeeze(x, -1)
-    
+    vis['raw'] = copy.deepcopy(x)
+    vis['shape'] = str(x.shape)
     # rescale to [0-1]
     if not within_0_1(x):
         warnings.warn('Original input range is not 0-1 when using grayscale mode. Auto-rescaling it to 0-1 by default.')
         x = rescale_0_1(x)
-    
+    vis['disp'] = x
     plot_cfg = dict(cmap='gray')
     
     if isinteger(np.unique(x)).all():
         plot_cfg['interpolation'] = 'nearest'
+        vis['mode'] = 'Binary'
+    else:
+        vis['mode'] = 'Gray'
+    vis['plot_cfg'] = plot_cfg
     
-    return x, plot_cfg
+    return vis
 
 
 def vis_categorical_mask(x, max_N=256, **kwargs):
     assert (len(x.shape) == 3) and (x.shape[-1] == 1)
     assert isinteger(np.unique(x)).all(), "Input has to contain only integers in categorical mask mode."
+    vis = dict()
     
     x = np.squeeze(x, -1)
+    vis['raw'] = copy.deepcopy(x)
+    vis['shape'] = str(x.shape)
     N = int(x.max()) + 1
     
     if x.max() > max_N:
@@ -260,9 +308,14 @@ def vis_categorical_mask(x, max_N=256, **kwargs):
     
     cmap = colors.ListedColormap(color_list, N=N)
     
-    plot_cfg = dict(cmap=cmap, interpolation="nearest")
+    x = cmap(x.astype(np.int), alpha=None, bytes=True)[:,:,:3]
+    print(x.shape)
+    plot_cfg = dict( interpolation="nearest")
     
-    return x , plot_cfg
+    vis['disp'] = x
+    vis['plot_cfg'] = plot_cfg
+    vis['mode'] = 'Categorical'
+    return vis
 
 
 if __name__ == "__main__":

@@ -89,8 +89,8 @@ def show(x, display=True, **kwargs):
     for row in vis_list: 
         list_per_row = []
         for img in row:
-            vis, plot_cfg = visualize(img, **kwargs)
-            list_per_row.append((vis, plot_cfg))
+            vis = visualize(img, **kwargs)
+            list_per_row.append(vis)
         plot_list.append(list_per_row)
     
     if display:
@@ -137,11 +137,11 @@ def show_video(x, display=True, **kwargs):
             for video in row:
                 if t < len(video):
                     img = video[t]
-                    vis, plot_cfg = visualize(img, **kwargs)
+                    vis = visualize(img, **kwargs)
                 else:
-                    vis, plot_cfg = (None, None)
+                    vis = None
 
-                frames_at_t_per_row.append((vis, plot_cfg)) # 
+                frames_at_t_per_row.append(vis) # 
             frames_at_t.append(frames_at_t_per_row) # 
         video_vis_list.append(frames_at_t)
         
