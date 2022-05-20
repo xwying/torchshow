@@ -19,10 +19,12 @@ Torchshow automatically infers the type of a tensor such as RGB images, grayscal
 
 
 
-## Changelogs
-- [2021-08-23] v0.3.2 (1) Adding `ts.save(tensor)` API for saving figs instead of showing them. This is more convenient compared to the headless mode. (2) Remove surrounding white spaces of the saved figures. (3) ts.headless() has been removed. Use ts.save() instead.
-- [2021-06-14] v0.3.1 Fixes some bugs. Now support headless mode useful for running on server without display. ~~After setting `ts.headless(True)`, calling `ts.show(tensor)` will save the figure under `./_torchshow/`~~.
-- [2021-04-25] v0.3.0 Adding optical flow support.
+## What's New in v0.4.0
+- TorchShow will now automatically check if running in an ipython environment (e.g. jupyter notebook). `ts.inline()` is removed since it is no longer needed.
+- Fix a bug where binary mask will be inferred as categorical mask.
+- Optimize the logic to handle a few corner cases.
+
+See the complete [changelogs](changelogs.md).
 
 
 ## Installation
@@ -59,14 +61,14 @@ ts.save(tensor, './vis/test.jpg') # You can specify the save path.
 - [Visualizing Multiple Tensors with Custom Layout.](#5-visualizing-multiple-tensors-with-custom-layout)
 - [Visualizing Tensors as Video Clip](#6-visualizing-tensors-as-video-clip)
 - [Display Video Animation in Jupyter Notebook](#7-display-video-animation-in-jupyter-notebook)
-- [Set Inline Display in Notebook](#8-set-inline-display-in-notebook)
+- [Visualizing Optical Flows](#8-visualizing-optical-flows)
 - [Change Channel Order (RGB/BGR)](#9-change-channel-order-rgbbgr)
 - [Change Unnormalization Presets](#10-change-unnormalization-presets)
 
 ### 1. Visualizing Image Tensor
-Visualizing an image-like tensor is not difficult but could be very tedious. You usually need to convert the tensor to numpy array with proper shapes. In many cases images were normalized during dataloader, which means that you have to unnormalize it so it can be displayed correctly.
+Visualizing an image-like tensor is not difficult but could be very cumbersome. You usually need to convert the tensor to numpy array with proper shapes. In many cases images were normalized during dataloader, which means that you have to unnormalize it so it can be displayed correctly.
 
-If you need to frequently verify how your image tensors look like, TorchShow is a very helpful tool. 
+If you need to frequently verify what your tensors look like, TorchShow is a very helpful tool. 
 
 Using Matplotlib             |  Using TorchShow
 :-------------------------:|:-------------------------:
@@ -134,13 +136,11 @@ ani = ts.show_video(video_tensor)
 HTML(ani.to_jshtml())
 ```
 
-### 8. Set Inline Display in Notebook
-By default the ts.show() will call `plt.show()` to display the image. When using notebook environment, this step may not be needed. Running the following code will tell TorchShow to not run `plt.show()`.
+### 8. Visualizing Optical Flows
+TorchShow support visualizing optical flow (powered by [flow_vis](https://github.com/tomrunia/OpticalFlow_Visualization)). Below is a demostration using a VSCode debugger remotely attached to a SSH server (with X-server configured). Running in a Jupyter Notebook is also supported.
 
-```python
-import torchshow as ts
-ts.use_inline(True)
-```
+![](./imgs/flow_ts.gif)
+
 ### 9. Change Channel Order (RGB/BGR)
 By default tensorflow visualize image tensor in the RGB mode, you can switch the setting to BGR in case you are using opencv to load the image.
 ```python
