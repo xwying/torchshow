@@ -232,10 +232,10 @@ def vis_grayscale(x, **kwargs):
     
     plot_cfg = dict(cmap='gray')
     
-    return x, plot_cfg
-    # if display:
-    #     display_plt(x, mode='grayscale', **kwargs)
+    if isinteger(np.unique(x)).all():
+        plot_cfg['interpolation'] = 'nearest'
     
+    return x, plot_cfg
 
 
 def vis_categorical_mask(x, max_N=256, **kwargs):
@@ -260,11 +260,9 @@ def vis_categorical_mask(x, max_N=256, **kwargs):
     
     cmap = colors.ListedColormap(color_list, N=N)
     
-    plot_cfg = dict(cmap=cmap)
+    plot_cfg = dict(cmap=cmap, interpolation="nearest")
     
     return x , plot_cfg
-    # if display:
-    #     display_plt(x, mode='categorical_mask', cmap=cmap)
 
 
 if __name__ == "__main__":

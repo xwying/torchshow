@@ -3,6 +3,7 @@ import torchshow as ts
 import torch 
 import numpy as np
 import logging
+from PIL import Image
 
 def read_flow(filename):
     with open(filename, 'rb') as f:
@@ -48,6 +49,7 @@ def test(section):
         ts.show(rgb_img_5)
 
     gray_img = torch.rand((1, 100, 100))
+    category_mask = np.array(Image.open('test_data/example_category_mask.png'))
     if section <=2:
         print("2.1 Single 1-Channel image between 0-1")
         print(gray_img.min(), gray_img.max())
@@ -64,7 +66,9 @@ def test(section):
         ts.show(gray_img_3)
 
         print("2.4 Single 1-Channel image with binary value")
-        gray_img_4 = torch.randint(0, 2, (1, 100, 100))
+        gray_img_4 = torch.eye(100).unsqueeze(0)
+        gray_img_4[:, 20:40, 20:40] = 1
+        gray_img_4[:, 60:80, 60:80] = 1 
         print(gray_img_4.unique())
         ts.show(gray_img_4)
 
@@ -77,8 +81,12 @@ def test(section):
         gray_img_6 = torch.randint(-50, 100, (1, 100, 100))
         print(gray_img_6.unique())
         ts.show(gray_img_6)
+        
+        print("2.7 Single 1-Channel normal categorical mask")
+        print(np.unique(category_mask))
+        ts.show(category_mask)
 
-    flow = read_flow("./example_flow/example1.flo")
+    flow = read_flow("./test_data/example_flow.flo")
     if section <= 3:
         print("3.1 Single 2-Channel normal optical flow")
         print(flow.shape, flow.min(), flow.max())

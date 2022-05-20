@@ -4,6 +4,7 @@ _torchshow/
 __pycache__/
 *.ipynb
 *.flo
+test_data/
 ._*
 
 # Distribution / packaging
