@@ -19,10 +19,9 @@ Torchshow automatically infers the type of a tensor such as RGB images, grayscal
 
 
 
-## What's New in v0.4.0
-- TorchShow will now automatically check if running in an ipython environment (e.g. jupyter notebook). `ts.inline()` is removed since it is no longer needed.
-- Fix a bug where binary mask will be inferred as categorical mask.
-- Optimize the logic to handle a few corner cases.
+## What's New in v0.4.1
+- Now you can get richer information from a pixel (e.g. raw pixel value) by hovering the mouse over the pixels ([Example](#6-examine-the-pixel-with-richer-information)).
+- Fix the unexpected colors around the contour while visualizing categorical masks.
 
 See the complete [changelogs](changelogs.md).
 
@@ -59,6 +58,7 @@ ts.save(tensor, './vis/test.jpg') # You can specify the save path.
 - [Visualizing Batch of Tensors](#3-visualizing-batch-of-tensors)
 - [Visualizing Channels in Feature Maps](#4-visualizing-feature-maps)
 - [Visualizing Multiple Tensors with Custom Layout.](#5-visualizing-multiple-tensors-with-custom-layout)
+- [Examine the pixel with rich information.](#6-examine-the-pixel-with-richer-information)
 - [Visualizing Tensors as Video Clip](#6-visualizing-tensors-as-video-clip)
 - [Display Video Animation in Jupyter Notebook](#7-display-video-animation-in-jupyter-notebook)
 - [Visualizing Optical Flows](#8-visualizing-optical-flows)
@@ -112,7 +112,24 @@ ts.show([[tensor1, tensor2],
 
 ![](./imgs/custom_layout.gif)
 
-### 6. Visualizing Tensors as Video Clip
+
+### 6. Examine the pixel with richer information.
+Since v0.4.1, TorchShow allows you to get richer information from a pixel you are interested by simply hovering your mouse over that pixel. This is very helpful for some types of tensors such as Categorical Mask and Optical Flows. 
+
+Currently, Torchshow displays the following information: 
+
+- `Mode`: Visualization Mode.
+- `Shape`: Shape of the tensor.
+- `X`, `Y`: The pixel location of the mouse cursor.
+- `Raw`: The raw tensor value at (X, Y).
+- `Display Value`: The display value at (X, Y).
+
+![](./imgs/rich_info.gif)
+
+This feature can be turned off by `ts.show_rich_info(False)`.
+
+
+### 7. Visualizing Tensors as Video Clip
 Tensors can be visualized as video clips, which very helpful if the tensor is a sequence of frames. This can be done using `show_video` function.
 
 ```python
@@ -125,7 +142,7 @@ It is also possible to visualize multiple videos in a custom grid layout.
 
 ![](./imgs/video_grid.gif)
 
-### 7. Display Video Animation in Jupyter Notebook
+### 8. Display Video Animation in Jupyter Notebook
 TorchShow visualizes video clips as an `matplotlib.func_animation` object and may not display in a notebook by default. The following example shows a simple trick to display it.
 
 ```python
@@ -136,18 +153,18 @@ ani = ts.show_video(video_tensor)
 HTML(ani.to_jshtml())
 ```
 
-### 8. Visualizing Optical Flows
+### 9. Visualizing Optical Flows
 TorchShow support visualizing optical flow (powered by [flow_vis](https://github.com/tomrunia/OpticalFlow_Visualization)). Below is a demostration using a VSCode debugger remotely attached to a SSH server (with X-server configured). Running in a Jupyter Notebook is also supported.
 
 ![](./imgs/flow_ts.gif)
 
-### 9. Change Channel Order (RGB/BGR)
+### 10. Change Channel Order (RGB/BGR)
 By default tensorflow visualize image tensor in the RGB mode, you can switch the setting to BGR in case you are using opencv to load the image.
 ```python
 ts.set_color_mode('bgr')
 ```
 
-### 10. Change Unnormalization Presets
+### 11. Change Unnormalization Presets
 The image tensor may have been preprocessed with a normalization function. If not specified, torchshow will automatically rescale it to 0-1. 
 
 

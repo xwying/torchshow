@@ -1,5 +1,9 @@
 # Changelogs
 
+## [2022-05-21] v0.4.1
+- Now you can get richer information from a pixel (e.g. raw pixel value) by hovering the mouse over the pixels.
+- Fix the unexpected colors around the contour while visualizing categorical masks.
+
 ## [2022-05-19] v0.4.0
 - TorchShow will now automatically check if running in an ipython environment (e.g. jupyter notebook). Remove `ts.inline()` since it is no longer needed.
 - Fix a bug where binary mask will be inferred as categorical mask.
