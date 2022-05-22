@@ -126,6 +126,8 @@ Currently, Torchshow displays the following information:
 
 ![](./imgs/rich_info.gif)
 
+**Note: if the information is not showing on the status bar, try to resize the window and make it wider.**
+
 This feature can be turned off by `ts.show_rich_info(False)`.
 
 
