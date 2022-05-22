@@ -114,7 +114,7 @@ ts.show([[tensor1, tensor2],
 
 
 ### 6. Examine the pixel with richer information.
-Since v0.4.1, TorchShow allows you to get richer information from a pixel you are interested by simply hovering your mouse over that pixel. This is very helpful for some types of tensors such as Categorical Mask and Optical Flows. 
+Since `v0.4.1`, TorchShow allows you to get richer information from a pixel you are interested by simply hovering your mouse over that pixel. This is very helpful for some types of tensors such as Categorical Mask and Optical Flows. 
 
 Currently, Torchshow displays the following information: 
 
