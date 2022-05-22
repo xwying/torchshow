@@ -4,6 +4,7 @@ class Config():
                             'image_mean': None,
                             'image_std': None,
                             'color_mode': 'rgb',
+                            'show_rich_info': True,
                             } 
 
     def set(self, key, value):
@@ -26,3 +27,9 @@ def set_image_std(mean: list):
 def set_color_mode(value='rgb'):
     assert value in ['rgb', 'bgr']
     config.set('color_mode', value)
+    
+def show_rich_info(flag: bool):
+    if flag:
+        config.set('show_rich_info', True)
+    else:
+        config.set('show_rich_info', False)

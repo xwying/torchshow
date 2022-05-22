@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib
 from matplotlib import colors, animation, pyplot as plt
 # from PIL import Image
 from .utils import isinteger, within_0_1, within_0_255, isnotebook
@@ -38,8 +39,16 @@ def create_color_map(N=256, normalized=False):
     cmap = cmap/255 if normalized else cmap
     return cmap
 
+def set_title(fig, title):
+    # fig.canvas.set_window_title(title)
+    if matplotlib.__version__ < '3.4':
+        fig.canvas.set_window_title(title)
+    else:
+        fig.canvas.manager.set_window_title(title)
+
 def imshow(ax, vis):
     max_rows, max_cols = vis['raw'].shape[:2]
+    
     def format_coord(x, y):
         """
         We display x-y coordinate as integer.
@@ -48,17 +57,43 @@ def imshow(ax, vis):
         row = int(y + 0.5)
         if not (0<=col<max_cols and 0<=row<max_rows):
             return ""
-        raw_data = vis['raw'][row, col]
-        try:
-            raw_data[0]
-        except (TypeError, IndexError):
-            raw_data = [raw_data]
-        raw_data_str = ', '.join('{:0.3g}'.format(item) for item in raw_data
-                                 if isinstance(item, Number))
-        return 'Mode='+vis['mode'] + ', Shape='+vis['shape'] + ', X=%1d, Y=%1d, ' % (col, row) + 'Raw= [' + raw_data_str + '], Display=' 
+        return 'Mode='+vis['mode'] + ', Shape='+vis['shape'] + ', X=%1d, Y=%1d' % (col, row)
     
-    ax.imshow(vis['disp'], **vis['plot_cfg'])
-    ax.format_coord = format_coord
+    def prepare_data(data):
+        try:
+            data[0]
+        except (TypeError, IndexError):
+            data = [data]
+        return data
+    
+    def get_cursor_data(event):
+        col = int(event.xdata + 0.5)
+        row = int(event.ydata + 0.5)
+        if not (0<=col<max_cols and 0<=row<max_rows):
+            return ""
+        raw_data = prepare_data(vis['raw'][row, col])
+        disp_data = prepare_data(vis['disp'][row, col])
+        
+        return raw_data, disp_data
+    
+    def format_cursor_data(data):
+        try:
+            raw, disp = data
+        except:
+            return ""
+        raw_data_str = ', '.join('{:0.3g}'.format(item) for item in raw
+                                 if isinstance(item, Number))
+        disp_data_str = ', '.join('{:0.3g}'.format(item) for item in disp
+                                 if isinstance(item, Number))
+        return "Raw=[{}], Disp=[{}]".format(raw_data_str, disp_data_str)
+        # return "testest [" + str(data) + "]"
+    
+    artist = ax.imshow(vis['disp'], **vis['plot_cfg'])
+    
+    if config.get('show_rich_info'):
+        artist.get_cursor_data = get_cursor_data
+        artist.format_cursor_data = format_cursor_data
+        ax.format_coord = format_coord
 
 
 def display_plt(vis_list, **kwargs):
@@ -71,6 +106,7 @@ def display_plt(vis_list, **kwargs):
     title_namespace = {}
     
     fig, axes = plt.subplots(nrows=nrows, ncols=ncols, squeeze=False)
+    set_title(fig, 'TorchShow')
     
     for i, plots_per_row in enumerate(vis_list):
         for j, vis in enumerate(plots_per_row):
@@ -119,7 +155,7 @@ def animate_plt(video_list, **kwargs):
     # title_namespace = {}
     
     fig, axes = plt.subplots(nrows=nrows, ncols=ncols, squeeze=False)
-    
+    set_title(fig, 'TorchShow')
     plots = []
     
     # Initialization
