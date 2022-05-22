@@ -59,11 +59,11 @@ ts.save(tensor, './vis/test.jpg') # You can specify the save path.
 - [Visualizing Channels in Feature Maps](#4-visualizing-feature-maps)
 - [Visualizing Multiple Tensors with Custom Layout.](#5-visualizing-multiple-tensors-with-custom-layout)
 - [Examine the pixel with rich information.](#6-examine-the-pixel-with-richer-information)
-- [Visualizing Tensors as Video Clip](#6-visualizing-tensors-as-video-clip)
-- [Display Video Animation in Jupyter Notebook](#7-display-video-animation-in-jupyter-notebook)
-- [Visualizing Optical Flows](#8-visualizing-optical-flows)
-- [Change Channel Order (RGB/BGR)](#9-change-channel-order-rgbbgr)
-- [Change Unnormalization Presets](#10-change-unnormalization-presets)
+- [Visualizing Tensors as Video Clip](#7-visualizing-tensors-as-video-clip)
+- [Display Video Animation in Jupyter Notebook](#8-display-video-animation-in-jupyter-notebook)
+- [Visualizing Optical Flows](#9-visualizing-optical-flows)
+- [Change Channel Order (RGB/BGR)](#10-change-channel-order-rgbbgr)
+- [Change Unnormalization Presets](#11-change-unnormalization-presets)
 
 ### 1. Visualizing Image Tensor
 Visualizing an image-like tensor is not difficult but could be very cumbersome. You usually need to convert the tensor to numpy array with proper shapes. In many cases images were normalized during dataloader, which means that you have to unnormalize it so it can be displayed correctly.
