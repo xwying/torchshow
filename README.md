@@ -122,7 +122,7 @@ Currently, Torchshow displays the following information:
 - `Shape`: Shape of the tensor.
 - `X`, `Y`: The pixel location of the mouse cursor.
 - `Raw`: The raw tensor value at (X, Y).
-- `Display Value`: The display value at (X, Y).
+- `Disp`: The display value at (X, Y).
 
 ![](./imgs/rich_info.gif)
 
