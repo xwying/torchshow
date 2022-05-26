@@ -1,6 +1,7 @@
 <div align="center">
 
 ![TorchShow Logo](https://raw.githubusercontent.com/xwying/torchshow/master/imgs/torchshow.png)
+
 [![PyPI version](https://badge.fury.io/py/torchshow.svg)](https://badge.fury.io/py/torchshow)
 [![Downloads](https://static.pepy.tech/personalized-badge/torchshow?period=total&units=international_system&left_color=grey&right_color=brightgreen&left_text=Downloads)](https://pepy.tech/project/torchshow)
 ![License](https://img.shields.io/github/license/xwying/torchshow?color=brightgreen)
