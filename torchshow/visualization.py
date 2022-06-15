@@ -103,9 +103,13 @@ def display_plt(vis_list, **kwargs):
     tight_layout = kwargs.get('tight_layout', True)
     show_title = kwargs.get('show_title', False)
     title_pattern = kwargs.get('title_pattern', "{img_id}")
+    figsize = kwargs.get('figsize', None)
+    dpi = kwargs.get('dpi', None)
     title_namespace = {}
     
-    fig, axes = plt.subplots(nrows=nrows, ncols=ncols, squeeze=False)
+    fig = plt.figure(figsize=figsize, dpi=dpi)
+    axes = fig.subplots(nrows=nrows, ncols=ncols, squeeze=False)
+    # fig, axes = plt.subplots(nrows=nrows, ncols=ncols, squeeze=False)
     set_title(fig, 'TorchShow')
     
     for i, plots_per_row in enumerate(vis_list):
@@ -153,8 +157,12 @@ def animate_plt(video_list, **kwargs):
     # show_title = kwargs.get('show_title', False)
     # title_pattern = kwargs.get('title_pattern', "{img_id}")
     # title_namespace = {}
+    figsize = kwargs.get('figsize', None)
+    dpi = kwargs.get('dpi', None)
     
-    fig, axes = plt.subplots(nrows=nrows, ncols=ncols, squeeze=False)
+    fig = plt.figure(figsize=figsize, dpi=dpi)
+    axes = fig.subplots(nrows=nrows, ncols=ncols, squeeze=False)
+    # fig, axes = plt.subplots(nrows=nrows, ncols=ncols, squeeze=False)
     set_title(fig, 'TorchShow')
     plots = []
     
