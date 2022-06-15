@@ -15,8 +15,8 @@ vis_func_dict = dict(image=vis_image,
                      categorical_mask=vis_categorical_mask,
                      flow=vis_flow)
 
-def save(x, path=None):
-    show(x, save=True, file_path=path)
+def save(x, path=None, **kwargs):
+    show(x, save=True, file_path=path, **kwargs)
 
 
 def show(x, display=True, **kwargs):

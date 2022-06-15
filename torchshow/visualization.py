@@ -137,6 +137,7 @@ def display_plt(vis_list, **kwargs):
         if dirname != '':
             os.makedirs(dirname, exist_ok=True)
         fig.savefig(file_path, bbox_inches = 'tight', pad_inches=0)
+        plt.close(fig)
         return
     
     if not isnotebook():
