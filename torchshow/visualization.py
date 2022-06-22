@@ -342,7 +342,7 @@ def vis_categorical_mask(x, max_N=256, **kwargs):
     N = int(x.max()) + 1
     
     if x.max() > max_N:
-        warnings.warn('The maximum value in input is {} which is greater than the default max_N ({}), TensorShow will automatically adjust max_N to {}.'.format(x.max(), max_N, x.max()))
+        warnings.warn('The maximum value in input is {} which is greater than the default max_N ({}). Automatically adjust max_N to {}.'.format(x.max(), max_N, x.max()))
         max_N = x.max() + 1
         
     color_list = create_color_map(N=max_N, normalized=True)
