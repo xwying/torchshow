@@ -39,7 +39,10 @@ def create_color_map(N=256, normalized=False):
     cmap = cmap/255 if normalized else cmap
     return cmap
 
-def set_title(fig, title):
+def set_window_title(fig, title):
+    """
+    Set the title of the figure window (effective when using a interactive backend.)
+    """
     # fig.canvas.set_window_title(title)
     if matplotlib.__version__ < '3.4':
         fig.canvas.set_window_title(title)
@@ -111,7 +114,7 @@ def display_plt(vis_list, **kwargs):
     fig = plt.figure(figsize=figsize, dpi=dpi)
     axes = fig.subplots(nrows=nrows, ncols=ncols, squeeze=False)
     # fig, axes = plt.subplots(nrows=nrows, ncols=ncols, squeeze=False)
-    set_title(fig, 'TorchShow')
+    set_window_title(fig, 'TorchShow')
     if suptitle:
         fig.suptitle(suptitle)
     
@@ -169,7 +172,7 @@ def animate_plt(video_list, **kwargs):
     fig = plt.figure(figsize=figsize, dpi=dpi)
     axes = fig.subplots(nrows=nrows, ncols=ncols, squeeze=False)
     # fig, axes = plt.subplots(nrows=nrows, ncols=ncols, squeeze=False)
-    set_title(fig, 'TorchShow')
+    set_window_title(fig, 'TorchShow')
     if suptitle:
         fig.suptitle(suptitle)
 
