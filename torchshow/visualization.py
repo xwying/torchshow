@@ -124,9 +124,10 @@ def display_plt(vis_list, **kwargs):
             if show_title:
                 axes[i, j].set_title(title_pattern.format(**title_namespace))
            
-    for ax in axes.ravel():
-        if not show_axis:
+    if not show_axis:
+        for ax in axes.ravel():
             ax.axis('off')
+            
     if tight_layout:
         fig.tight_layout()
     
@@ -157,7 +158,7 @@ def animate_plt(video_list, **kwargs):
     ncols = max([len(l) for l in video_list[0]])
     
     show_axis = kwargs.get('show_axis', False)
-    # tight_layout = kwargs.get('tight_layout', True)
+    tight_layout = kwargs.get('tight_layout', True)
     suptitle = kwargs.get('suptitle', None)
     # show_title = kwargs.get('show_title', False)
     # title_pattern = kwargs.get('title_pattern', "{img_id}")
@@ -183,9 +184,12 @@ def animate_plt(video_list, **kwargs):
             else:
                 plots.append(None)
     
-    for ax in axes.ravel():
-        if not show_axis:
+    if not show_axis:
+        for ax in axes.ravel():
             ax.axis('off')
+            
+    if tight_layout:
+        fig.tight_layout()            
     
     def run(frames_at_t):
         for i, plots_per_row in enumerate(frames_at_t):
