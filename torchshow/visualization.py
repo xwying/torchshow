@@ -101,6 +101,7 @@ def display_plt(vis_list, **kwargs):
     ncols = max([len(l) for l in vis_list])
     show_axis = kwargs.get('show_axis', False)
     tight_layout = kwargs.get('tight_layout', True)
+    suptitle = kwargs.get('suptitle', None)
     show_title = kwargs.get('show_title', False)
     title_pattern = kwargs.get('title_pattern', "{img_id}")
     figsize = kwargs.get('figsize', None)
@@ -111,6 +112,8 @@ def display_plt(vis_list, **kwargs):
     axes = fig.subplots(nrows=nrows, ncols=ncols, squeeze=False)
     # fig, axes = plt.subplots(nrows=nrows, ncols=ncols, squeeze=False)
     set_title(fig, 'TorchShow')
+    if suptitle:
+        fig.suptitle(suptitle)
     
     for i, plots_per_row in enumerate(vis_list):
         for j, vis in enumerate(plots_per_row):
@@ -155,6 +158,7 @@ def animate_plt(video_list, **kwargs):
     
     show_axis = kwargs.get('show_axis', False)
     # tight_layout = kwargs.get('tight_layout', True)
+    suptitle = kwargs.get('suptitle', None)
     # show_title = kwargs.get('show_title', False)
     # title_pattern = kwargs.get('title_pattern', "{img_id}")
     # title_namespace = {}
@@ -165,6 +169,9 @@ def animate_plt(video_list, **kwargs):
     axes = fig.subplots(nrows=nrows, ncols=ncols, squeeze=False)
     # fig, axes = plt.subplots(nrows=nrows, ncols=ncols, squeeze=False)
     set_title(fig, 'TorchShow')
+    if suptitle:
+        fig.suptitle(suptitle)
+
     plots = []
     
     # Initialization
@@ -339,7 +346,7 @@ def vis_categorical_mask(x, max_N=256, **kwargs):
     N = int(x.max()) + 1
     
     if x.max() > max_N:
-        warnings.warn('The maximum value in input is {} which is greater than the default max_N ({}), TensorShow will automatically adjust max_N to {}.'.format(x.max(), max_N, x.max()))
+        warnings.warn('The maximum value in input is {} which is greater than the default max_N ({}). Automatically adjust max_N to {}.'.format(x.max(), max_N, x.max()))
         max_N = x.max() + 1
         
     color_list = create_color_map(N=max_N, normalized=True)
