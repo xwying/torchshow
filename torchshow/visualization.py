@@ -158,6 +158,7 @@ def animate_plt(video_list, **kwargs):
     
     show_axis = kwargs.get('show_axis', False)
     # tight_layout = kwargs.get('tight_layout', True)
+    suptitle = kwargs.get('suptitle', None)
     # show_title = kwargs.get('show_title', False)
     # title_pattern = kwargs.get('title_pattern', "{img_id}")
     # title_namespace = {}
@@ -168,6 +169,9 @@ def animate_plt(video_list, **kwargs):
     axes = fig.subplots(nrows=nrows, ncols=ncols, squeeze=False)
     # fig, axes = plt.subplots(nrows=nrows, ncols=ncols, squeeze=False)
     set_title(fig, 'TorchShow')
+    if suptitle:
+        fig.suptitle(suptitle)
+
     plots = []
     
     # Initialization
