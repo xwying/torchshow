@@ -1,8 +1,10 @@
 # Changelogs
 
 ## Next version
-- You can specify the `figsize` and `dpi` parameter when calling ts.show(). 
+- You can specify the `figsize`, `dpi`, and `subtitle` parameter when calling ts.show(). 
 - Add some missing APIs to `ts.save()`.
+- Add tight_layout kwargs to show_video (enabled by default).
+- Fix bugs.
 
 ## [2022-05-21] v0.4.1
 - Now you can get richer information from a pixel (e.g. raw pixel value) by hovering the mouse over the pixels.
