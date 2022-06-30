@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib
-from matplotlib import colors, animation, pyplot as plt
+from matplotlib import colors, animation, pyplot as plt, rcParams
 # from PIL import Image
 from .utils import isinteger, within_0_1, within_0_255, isnotebook
 from .config import config
@@ -17,6 +17,13 @@ logger = logging.getLogger('TorchShow')
 
 IMAGENET_MEAN = [0.485, 0.456, 0.406]
 IMAGENET_STD = [0.229, 0.224, 0.225]
+
+AXES_TITLE_FONTDICT = {'fontsize': rcParams['axes.titlesize'],
+                       'fontweight': rcParams['axes.titleweight'],
+                       'color': rcParams['axes.titlecolor'],
+                       'verticalalignment': 'bottom',
+                       'horizontalalignment': 'center'}
+
 
 def create_color_map(N=256, normalized=False):
     
@@ -105,8 +112,9 @@ def display_plt(vis_list, **kwargs):
     show_axis = kwargs.get('show_axis', False)
     tight_layout = kwargs.get('tight_layout', True)
     suptitle = kwargs.get('suptitle', None)
-    show_title = kwargs.get('show_title', False)
-    title_pattern = kwargs.get('title_pattern', "{img_id}")
+    axes_title = kwargs.get('axes_title', None)
+    # show_title = kwargs.get('show_title', False)
+    # title_pattern = kwargs.get('title_pattern', "{img_id}")
     figsize = kwargs.get('figsize', None)
     dpi = kwargs.get('dpi', None)
     title_namespace = {}
@@ -124,8 +132,10 @@ def display_plt(vis_list, **kwargs):
             imshow(axes[i,j], vis)
             title_namespace["img_id"] = i*ncols+j
             title_namespace["img_id_from_1"] = title_namespace["img_id"] + 1
-            if show_title:
-                axes[i, j].set_title(title_pattern.format(**title_namespace))
+            title_namespace["row"] = i
+            title_namespace["column"] = j
+            if axes_title is not None:
+                axes[i, j].set_title(axes_title.format(**title_namespace))
            
     if not show_axis:
         for ax in axes.ravel():
@@ -145,7 +155,6 @@ def display_plt(vis_list, **kwargs):
             os.makedirs(dirname, exist_ok=True)
         fig.savefig(file_path, bbox_inches = 'tight', pad_inches=0)
         plt.close(fig)
-        return
     
     if not isnotebook():
         plt.show()

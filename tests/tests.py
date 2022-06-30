@@ -131,6 +131,9 @@ def test(section):
         ts.save(batch, ncols=3)
         ts.show(batch, nrows=4)
         ts.save(batch, nrows=4)
+        ts.show(batch, nrows=4, axes_title="{img_id}")
+        ts.show(batch, nrows=4, axes_title="{img_id}-{img_id_from_1}-{row}-{column}")
+        ts.show(batch, nrows=4, axes_title="{img_id}-{img_id_from_1}-{row}-{column}", suptitle="Figure 1")
 
     if section <=5:
         print("5.1 Custom Layout")
@@ -157,7 +160,7 @@ def test(section):
         ts.show_video(rgb_img)
         ts.show_video(flow)
         ts.show_video([[video, video2], 
-                       [rgb_img, flow]])
+                       [rgb_img, flow]], suptitle="Video Example")
         print("6.3 Video Clip Edge Cases")
         try:
             ts.show_video(video4)
@@ -168,6 +171,13 @@ def test(section):
                            [video3, video4]])
         except Exception as e: # This should raise an error
             print(e)
+            
+    if section <=7:
+        print("Other API")
+        vis_list = ts.show(img_n, display=False)
+        print(len(vis_list), len(vis_list[0]))
+        vis_list = ts.show(img_n, display=False, nrows=3)
+        print(len(vis_list), len(vis_list[0]))
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:

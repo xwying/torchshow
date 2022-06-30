@@ -95,6 +95,8 @@ def show(x, display=True, **kwargs):
     
     if display:
         display_plt(plot_list, **kwargs)
+    else:
+        return plot_list
 
 
 def show_video(x, display=True, **kwargs):
@@ -147,6 +149,8 @@ def show_video(x, display=True, **kwargs):
         
     if display:
         return animate_plt(video_vis_list, **kwargs)
+    else:
+        return video_vis_list
         
 
 def visualize(x, 
