@@ -3,7 +3,17 @@
 ## torchshow.show
 
 ```python
-torchshow.show(x, display=True, nrows=None, ncols=None, channel_mode='auto', show_axis=False, tight_layout=True, suptitle=None, axes_title=None, figsize=None, dpi=None)
+torchshow.show(x, 
+               display=True, 
+               nrows=None, 
+               ncols=None, 
+               channel_mode='auto', 
+               show_axis=False, 
+               tight_layout=True, 
+               suptitle=None, 
+               axes_title=None, 
+               figsize=None, 
+               dpi=None)
 ```
 
 ### Parameters:
