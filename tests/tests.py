@@ -161,6 +161,9 @@ def test(section):
         ts.show_video(flow)
         ts.show_video([[video, video2], 
                        [rgb_img, flow]], suptitle="Video Example")
+        vis_list = ts.show_video([[video, video2], 
+                       [rgb_img, flow]], display=False)
+        print(len(vis_list), len(vis_list[0]), len(vis_list[0][0]))
         print("6.3 Video Clip Edge Cases")
         try:
             ts.show_video(video4)
