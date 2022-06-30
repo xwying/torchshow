@@ -4,8 +4,9 @@
 - You can specify the `figsize`, `dpi`, and `subtitle` parameter when calling ts.show(). 
 - Add some missing APIs to `ts.save()`.
 - Revisit the option to add axes titles.
-- Add tight_layout kwargs to show_video (enabled by default).
+- Add tight_layout option to `ts.show_video` (enabled by default).
 - Fix some bugs.
+- Create API Reference Page.
 
 ## [2022-05-21] v0.4.1
 - Now you can get richer information from a pixel (e.g. raw pixel value) by hovering the mouse over the pixels.

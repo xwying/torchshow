@@ -7,7 +7,7 @@ setuptools.setup(
     name="torchshow", # Replace with your own username
     version="0.4.2",
     author="Xiaowen Ying",
-    author_email="xiaowenying93@gmail.com",
+    author_email="shawnying.inbox@gmail.com",
     description="Visualizing PyTorch tensors with a single line of code.",
     long_description=long_description,
     long_description_content_type="text/markdown",
