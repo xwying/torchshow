@@ -58,6 +58,11 @@ ts.save(tensor) # Figure will be saved under ./_torchshow/***.png
 ts.save(tensor, './vis/test.jpg') # You can specify the save path.
 ```
 
+## API References
+
+Please check [this page](./API.md) for detailed API references.
+
+
 ## Examples
 
 ### Table of Contents

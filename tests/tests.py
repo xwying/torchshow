@@ -131,7 +131,7 @@ def test(section):
         ts.save(batch, ncols=3)
         ts.show(batch, nrows=4)
         ts.save(batch, nrows=4)
-        ts.show(batch, nrows=4, axes_title="{img_id}")
+        ts.show(batch, axes_title="Image ID: {img_id_from_1}")
         ts.show(batch, nrows=4, axes_title="{img_id}-{img_id_from_1}-{row}-{column}")
         ts.show(batch, nrows=4, axes_title="{img_id}-{img_id_from_1}-{row}-{column}", suptitle="Figure 1")
 
