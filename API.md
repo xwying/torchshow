@@ -10,7 +10,7 @@ torchshow.show(x, display=True, nrows=None, ncols=None, channel_mode='auto', sho
 
 * **x**: *tensor-like (support both `torch.Tensor` and `np.ndarray`) or List of tensor-like.* The tensor data that we want to visualize.
 
-* **display**: *bool*. If set to false, TorchShow will not display the data but return the list of processed data. Use it when you want to visualize them using other library such as OpenCV.
+* **display**: *bool*. If set to false, TorchShow will not display the data but return the list of processed data. Use it when you want to visualize them using other libraries such as OpenCV.
 
 * **nrows**: *Int*. The number of rows to plot in a grid layout. If not specified it will be automatically inferred by TorchShow.
 
@@ -24,7 +24,7 @@ torchshow.show(x, display=True, nrows=None, ncols=None, channel_mode='auto', sho
 
 * **suptitle**: *Str*. Add a centered suptitle to the figure.
 
-* **axes_title**: *Str*. Add titles to each of the axes. It can be used with predefined placeholders. Available placeholders are: `{img_id}`, `{img_id_from_1}`, `{row}`, `{column}`. Below is an example that shows the image id on top of each images:
+* **axes_title**: *Str*. Add titles to each of the axes. It can be used with predefined placeholders. Available placeholders are: `{img_id}`, `{img_id_from_1}`, `{row}`, `{column}`. Below is an example that shows the image id on top of each image:
 
     ```python
     batch = torch.rand(8, 3, 100, 100)
@@ -69,7 +69,7 @@ torchshow.show_video(x,
 
 * **x**: *tensor-like (support both `torch.Tensor` and `np.ndarray`) or List of tensor-like.* The tensor data that we want to visualize.
 
-* **display**: *bool*. If set to false, TorchShow will not display the data but return the list of processed data. Use it when you want to visualize them using other library such as OpenCV.
+* **display**: *bool*. If set to false, TorchShow will not display the data but return the list of processed data. Use it when you want to visualize them using other libraries such as OpenCV.
 
 * **show_axis**: *Bool*. Whether to show the axis in the plot.
 
