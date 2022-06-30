@@ -34,7 +34,9 @@ torchshow.show(x,
 
 * **suptitle**: *Str*. Add a centered suptitle to the figure.
 
-* **axes_title**: *Str*. Add titles to each of the axes. It can be used with predefined placeholders. Available placeholders are: `{img_id}`, `{img_id_from_1}`, `{row}`, `{column}`. Below is an example that shows the image id on top of each image:
+* **axes_title**: *Str*. Add titles to each of the axes. It can be used with predefined placeholders. Available placeholders are: `{img_id}`, `{img_id_from_1}`, `{row}`, `{column}`. 
+
+    Below is an example that shows the image id on top of each image:
 
     ```python
     batch = torch.rand(8, 3, 100, 100)
