@@ -20,9 +20,9 @@ def set_image_mean(mean: list):
     assert len(mean)==3
     config.set('image_mean', mean)
     
-def set_image_std(mean: list):
-    assert len(mean)==3
-    config.set('image_mean', mean)
+def set_image_std(std: list):
+    assert len(std)==3
+    config.set('image_std', std)
     
 def set_color_mode(value='rgb'):
     assert value in ['rgb', 'bgr']
