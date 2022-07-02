@@ -1,6 +1,7 @@
 import sys
 import torchshow as ts
 import torch 
+import torchvision
 import numpy as np
 import logging
 from PIL import Image
@@ -174,13 +175,23 @@ def test(section):
                            [video3, video4]])
         except Exception as e: # This should raise an error
             print(e)
-            
+
     if section <=7:
-        print("Other API")
+        print("7 Return vis_list if display=False")
         vis_list = ts.show(img_n, display=False)
         print(len(vis_list), len(vis_list[0]))
         vis_list = ts.show(img_n, display=False, nrows=3)
         print(len(vis_list), len(vis_list[0]))
+ 
+    if section <=8:
+        print("8 Change Unnormalization Presets")
+        transform = torchvision.transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+        rgb_img_0 = transform(rgb_img)
+        ts.set_image_mean([0.5, 0.5, 0.5])
+        ts.set_image_std([0.5, 0.5, 0.5])
+        rgb_img_1 = ts.show(rgb_img_0, display=False)[0][0]['disp']
+        assert (rgb_img_1==rgb_img).all()
+
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
