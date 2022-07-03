@@ -185,12 +185,18 @@ def test(section):
  
     if section <=8:
         print("8 Change Unnormalization Presets")
-        transform = torchvision.transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
-        rgb_img_0 = transform(rgb_img)
-        ts.set_image_mean([0.5, 0.5, 0.5])
-        ts.set_image_std([0.5, 0.5, 0.5])
-        rgb_img_1 = ts.show(rgb_img_0, display=False)[0][0]['disp']
-        assert (rgb_img_1==rgb_img).all()
+        rgb_img_numpy = rgb_img.permute(1,2,0).numpy()
+        def test_normalize(MEAN, STD):
+            transform = torchvision.transforms.Normalize(MEAN, STD)
+            rgb_img_0 = transform(rgb_img)
+            ts.set_image_mean(MEAN)
+            ts.set_image_std(STD)
+            rgb_img_1 = ts.show(rgb_img_0, display=False)[0][0]['disp']
+            assert np.allclose(rgb_img_1, rgb_img_numpy, atol=1e-7)  # will be False if atol=1e-8
+
+        test_normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])
+        test_normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+        test_normalize([0.4851231531212364564, 0.4561231523135436, 0.406123412312452343], [0.2293453455673435, 0.22434531445342, 0.22534534472423])
 
 
 if __name__ == "__main__":
