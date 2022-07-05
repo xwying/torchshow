@@ -249,7 +249,7 @@ def rescale_0_1(x):
     return (x - x.min()) / (x.max() - x.min())
 
         
-def unnormalize(x, mean=None, std=None):
+def unnormalize_with_mean_and_std(x, mean, std):
     """
     General Channel-wise mean std unnormalization. Expect input to be (H, W, C)
     """
@@ -286,7 +286,7 @@ def vis_image(x, unnormalize='auto', **kwargs):
             user_mean = [0] * x.shape[-1] # Initialize mean to 0 if not specified.
         if user_std == None:
             user_std = [1.] * x.shape[-1] # Initialize std to 1 if not specified.
-        x = unnormalize(x, user_mean, user_std)
+        x = unnormalize_with_mean_and_std(x, user_mean, user_std)
         
     elif unnormalize=='auto':
         x = auto_unnormalize_image(x)
@@ -296,7 +296,7 @@ def vis_image(x, unnormalize='auto', **kwargs):
             # A quick validation to check if the image was normalized to 0-1 
             # before substracting imagenet mean and std
             x = x / 255.
-        x = unnormalize(x, IMAGENET_MEAN, IMAGENET_STD)
+        x = unnormalize_with_mean_and_std(x, IMAGENET_MEAN, IMAGENET_STD)
         
     else:
         raise NotImplementedError("Unsupported unnormalization profile \"{}\"".format(unnormalize))
