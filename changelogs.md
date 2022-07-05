@@ -1,5 +1,8 @@
 # Changelogs
 
+## Next Version
+- Fix bugs when unnormalize with customize mean and std
+
 ## [2022-06-30] v0.4.2
 - You can specify the `figsize`, `dpi`, and `subtitle` parameter when calling ts.show(). 
 - Add some missing APIs to `ts.save()`.
