@@ -4,6 +4,8 @@
 
 ```python
 torchshow.show(x, 
+               mode='auto',
+               auto_permute=True,
                display=True, 
                nrows=None, 
                ncols=None, 
@@ -19,6 +21,10 @@ torchshow.show(x,
 ### Parameters:
 
 * **x**: *tensor-like (support both `torch.Tensor` and `np.ndarray`) or List of tensor-like.* The tensor data that we want to visualize.
+
+* **mode**: *str*. The visualize mode. The default value is `"auto"` where TorchShow will automatically infer the mode. Available options are: `"image"`, `"flow"`, `"grayscale"`, `"categorical_mask"`.
+
+* **auto_permute**: *bool*. If enable, TorchShow will automatically convert `CHW` to `HWC` format.
 
 * **display**: *bool*. If set to false, TorchShow will not display the data but return the list of processed data. Use it when you want to visualize them using other libraries such as OpenCV.
 
