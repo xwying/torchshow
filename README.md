@@ -37,9 +37,16 @@ See the complete [changelogs](changelogs.md).
 
 
 ## Installation
+Install from [PyPI](https://pypi.org/project/torchshow/):
 
 ```bash
 pip install torchshow
+```
+
+Alternatively, you can install directly from this repo to test the latest features.
+
+```bash
+pip install git+https://github.com/xwying/torchshow.git@master
 ```
 
 
