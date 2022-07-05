@@ -91,4 +91,31 @@ torchshow.show_video(x,
 
 * **figsize**: *2-tuple of floats*. Figure dimension `(width, height)` in inches.
 
-* **dpi**: *float* Dots per inch.
+* **dpi**: *float*. Dots per inch.
+
+---
+
+## torchshow.set_color_mode
+```python
+torchshow.set_color_mode(mode)
+```
+
+* **mode**: *str*. `"rgb"` or `"bgr"`. Set channel mode of the color image. The default config is `"rgb"`.
+
+---
+
+## torchshow.set_image_mean
+```python
+torchshow.set_image_mean(mean)
+```
+
+* **mean**: *list of number*: Set the channel-wise mean when unnormalize the image. The default mean is `[0., 0., 0.]`.
+
+---
+
+## torchshow.set_image_std
+```python
+torchshow.set_image_std(std)
+```
+
+* **std**: *list of number*: Set the channel-wise std when unnormalize the image. The default std is `[1., 1., 1.]`.
