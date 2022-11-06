@@ -6,6 +6,7 @@ __pycache__/
 *.flo
 test_data/
 ._*
+.DS_Store
 
 # Distribution / packaging
 build/
