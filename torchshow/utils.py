@@ -1,6 +1,4 @@
 import numpy as np
-import torch
-
 
 def isinteger(x):
     """
@@ -40,9 +38,15 @@ def calculate_grid_layout(N, img_H, img_W, nrow=None, ncol=None):
     
 def tensor_to_array(x):
     # Recursively perform tensor to array conversion
-    if isinstance(x, torch.Tensor):
-        return x.detach().clone().cpu().numpy()
-    elif isinstance(x, np.ndarray):
+    try:
+        import torch # If PyTorch is not installed, TorchShow will not handle torch tensors.
+    except ImportError:
+        pass
+    else:
+        if isinstance(x, torch.Tensor):
+            return x.detach().clone().cpu().numpy()
+        
+    if isinstance(x, np.ndarray):
         return x.copy()
     elif isinstance(x, list):
         return [tensor_to_array(e) for e in x]
