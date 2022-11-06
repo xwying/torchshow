@@ -56,6 +56,7 @@ def test(section):
 
     gray_img = torch.rand((1, 100, 100))
     category_mask = np.array(Image.open('test_data/example_category_mask.png'))
+    depth_image = np.array(Image.open('test_data/example_depth.png')) / 1000.0
     if section <=2:
         print("2.1 Single 1-Channel image between 0-1")
         print(gray_img.min(), gray_img.max())
@@ -98,6 +99,14 @@ def test(section):
         print(np.unique(category_mask))
         ts.show(category_mask)
         ts.save(category_mask)
+        
+        print("2.8 Single channel image with custom cmap")
+        ts.show(depth_image, cmap="magma")
+        ts.show(depth_image, cmap="inferno")
+        ts.show(depth_image, cmap="viridis")
+        ts.save(depth_image, cmap="magma")
+        ts.save(depth_image, cmap="inferno")
+        ts.save(depth_image, cmap="viridis")
 
     flow = read_flow("./test_data/example_flow.flo")
     if section <= 3:
