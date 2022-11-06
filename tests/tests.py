@@ -57,7 +57,6 @@ def test(section):
     gray_img = torch.rand((1, 100, 100))
     category_mask = np.array(Image.open('test_data/example_category_mask.png'))
     depth_image = np.array(Image.open('test_data/example_depth.png')) / 1000.0
-    print(depth_image.max())
     if section <=2:
         print("2.1 Single 1-Channel image between 0-1")
         print(gray_img.min(), gray_img.max())
