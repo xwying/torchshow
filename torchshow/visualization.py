@@ -339,7 +339,8 @@ def vis_grayscale(x, **kwargs):
         warnings.warn('Original input range is not 0-1 when using grayscale mode. Auto-rescaling it to 0-1 by default.')
         x = rescale_0_1(x)
     vis['disp'] = x
-    plot_cfg = dict(cmap='gray')
+    cmap = kwargs.get("cmap", "gray")
+    plot_cfg = dict(cmap=cmap)
     
     if isinteger(np.unique(x)).all():
         plot_cfg['interpolation'] = 'nearest'

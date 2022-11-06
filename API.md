@@ -15,7 +15,8 @@ torchshow.show(x,
                suptitle=None, 
                axes_title=None, 
                figsize=None, 
-               dpi=None)
+               dpi=None,
+               cmap='gray')
 ```
 
 ### Parameters:
@@ -53,7 +54,9 @@ torchshow.show(x,
 
 * **figsize**: *2-tuple of floats*. Figure dimension `(width, height)` in inches.
 
-* **dpi**: *float* Dots per inch.
+* **dpi**: *float*. Dots per inch.
+
+* **cmap**: *str*. Specifying the [color map](https://matplotlib.org/stable/tutorials/colors/colormaps.html) for grayscale image. 
 
 ---
 
