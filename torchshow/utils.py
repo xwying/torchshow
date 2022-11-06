@@ -39,7 +39,7 @@ def calculate_grid_layout(N, img_H, img_W, nrow=None, ncol=None):
 def tensor_to_array(x):
     # Recursively perform tensor to array conversion
     try:
-        import torch # If torch is not install. We will not handle torch tensors.
+        import torch # If PyTorch is not installed, TorchShow will not handle torch tensors.
     except ImportError:
         pass
     else:
