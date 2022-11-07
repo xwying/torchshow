@@ -27,11 +27,12 @@ Torchshow automatically infers the type of a tensor such as RGB images, grayscal
 
 
 
-## What's New in v0.4.2
-- You can specify the `figsize`, `dpi`, and `subtitle` parameter when calling ts.show(). 
-- Add some missing APIs to `ts.save()`.
-- Revisit the option to add axes titles with placeholders (for usage check the [API reference](./API.md)).
-- Add tight_layout option to `ts.show_video` (enabled by default).
+## What's New in v0.5.0
+- Support specifying the color map for grayscale image. 
+- Support PIL Image.
+- Support filenames as input.
+- Addinng `ts.overlay()` API which can be used to blend multiple plots. See [examples](#12-overlay-visualizations).
+- Fix bugs when unnormalize with customize mean and std.
 
 See the complete [changelogs](changelogs.md).
 
