@@ -76,6 +76,35 @@ torchshow.save(x,
 
 ---
 
+## torchshow.overlay
+
+```python
+torchshow.overlay(x,
+                  alpha=None,
+                  extent=None,
+                  save_as=None,
+                  **kwargs)
+```
+
+A function use to overlay multiple visualization.
+
+### Parameters
+
+* **x**: *list of tensor-like.*  A list of tensor data that we want to overlay their visualization. Filenames are also supported.
+* **alpha**: *list of (number or array-like)*. (Optional) The list of alpha values for blending, each alpha value is between 0 (transparent) and 1 (opaque). If alpha is an array-like, the alpha blending values are applied pixel by pixel, and alpha must have the same shape as X. 
+* **extent**: *tuple*. (Optional) Format: `(x_min, x_max, y_min, y_max)`. The extent defines the size of the rendering area which will be used to render all plots. If unspecified TorchShow will use the extent of the first visualization. 
+* **save_as**: *srt*. (Optional) A filepath to save the plot. If specified TorchShow will save the result to this file.
+* **kwargs**: You can pass in any other parameters available in `torchshow.show().`
+
+### Examples:
+
+```python
+ts.overlay([tensor1, tensor2, tensor3], alpha=[0.5, 0.5])
+ts.overlay(["example_rgb.jpg", "example_category_mask.png"], alpha=[1, 0.5])
+```
+
+---
+
 ## torchshow.show_video
 
 ```python
@@ -103,6 +132,7 @@ torchshow.show_video(x,
 * **dpi**: *float*. Dots per inch.
 
 ---
+
 
 ## torchshow.set_color_mode
 ```python

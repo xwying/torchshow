@@ -3,8 +3,14 @@ import os
 import sys
 import importlib
 import warnings
+import numbers
 
 _EXIF_ORIENT = 274
+
+
+def isnumber(x):
+    return isinstance(x, numbers.Number)
+
 
 def isinteger(x):
     """

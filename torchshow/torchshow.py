@@ -3,7 +3,7 @@ import numpy as np
 import logging
 import warnings
 
-from .visualization import vis_image, vis_grayscale, vis_categorical_mask, vis_flow, display_plt, animate_plt
+from .visualization import vis_image, vis_grayscale, vis_categorical_mask, vis_flow, display_plt, animate_plt, overlay_plt
 from .utils import isinteger, calculate_grid_layout, tensor_to_array
 
 logging.basicConfig(level=logging.INFO)
@@ -151,7 +151,32 @@ def show_video(x, display=True, **kwargs):
         return animate_plt(video_vis_list, **kwargs)
     else:
         return video_vis_list
+
+def overlay(x, alpha=None, extent=None, save_as=None, **kwargs):
+    """ Overlay a list of inputs. Useful for comparing two images or putting masks over images.
+
+    Args:
+        x (list): a list of tensor-like.
+        alpha (list) (Optional) : list of alpha for the overlay factor. Each alpha value could be a float or array-like.
+        save_as (str) (Optional) : A filepath. If specified, save the result to this file.
+    """
+    assert isinstance(x, list) and len(x)>1, "ts.overlay() expect a list with at least two tensor-like as inputs."
+    if alpha is None:
+        alpha = [1] + [0.7] * (len(x)-1) # Default blending factor.
+    if not isinstance(alpha, list):
+        alpha = [alpha]
+    
+    if len(alpha) < len(x):
+        alpha += [0.7] * (len(x) - len(alpha)) # fill the list of alpha so it has the same length as the list of tensor.
+    
+    vis_list = show(x, display=False, **kwargs)[0]
         
+    if extent is None:
+        h, w = vis_list[0]["disp"].shape[:2]
+        extent = 0, w, 0, h
+        
+    return overlay_plt(vis_list, alpha=alpha, save_as=save_as, extent=extent, **kwargs)
+            
 
 def visualize(x, 
          mode='auto',
