@@ -253,6 +253,7 @@ def unnormalize_with_mean_and_std(x, mean, std):
     """
     General Channel-wise mean std unnormalization. Expect input to be (H, W, C)
     """
+    x = x.copy()
     assert (len(x.shape) == 3), "Unnormalization only support (H, W, C) format input, got {}".format(x.shape)
     C = x.shape[-1]
     assert (len(mean) == C) and (len(std) == C), "Number of mean and std values must equals to number of channels."
@@ -378,7 +379,7 @@ def vis_categorical_mask(x, max_N=256, **kwargs):
     cmap = colors.ListedColormap(color_list, N=N)
     
     x = cmap(x.astype(np.int), alpha=None, bytes=True)[:,:,:3]
-    print(x.shape)
+    # print(x.shape)
     plot_cfg = dict( interpolation="nearest")
     
     vis['disp'] = x
