@@ -207,6 +207,26 @@ def test(section):
         test_normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
         test_normalize([0.4851231531212364564, 0.4561231523135436, 0.406123412312452343], [0.2293453455673435, 0.22434531445342, 0.22534534472423])
 
+    ts.set_image_mean([0,0,0])
+    ts.set_image_std([1,1,1])
+
+    if section <=9:
+        print("9 Testing PIL Image")
+        pil_rgb = Image.open("test_data/example_category_mask.png")
+        pil_depth = Image.open("test_data/example_depth.png")
+        ts.show([pil_rgb, pil_depth])
+        ts.save([pil_rgb, pil_depth])
+        
+    if section <=10:
+        print("10 Testing filename as input")
+        ts.show(["test_data/example_image.jpeg", "test_data/example_depth.png", "test_data/example_category_mask.png"])
+        try:
+            ts.show("test_data/a_file_that_does_not_exists.jpg")
+        except Exception as e :
+            print(e)
+            pass
+        ts.show("test_data/example_image_rotated_by_exif.jpeg")
+        ts.show("test_data/example_flow.flo")
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:

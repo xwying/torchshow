@@ -21,7 +21,7 @@ torchshow.show(x,
 
 ### Parameters:
 
-* **x**: *tensor-like (support both `torch.Tensor` and `np.ndarray`) or List of tensor-like.* The tensor data that we want to visualize.
+* **x**: *tensor-like (support both `torch.Tensor`, `np.ndarray` and `PIL Image`) or List of tensor-like. * The tensor data that we want to visualize. Filename and list of filenames are also supported, for example: `ts.show("my_image.jpg")`.
 
 * **mode**: *str*. The visualize mode. The default value is `"auto"` where TorchShow will automatically infer the mode. Available options are: `"image"`, `"flow"`, `"grayscale"`, `"categorical_mask"`.
 
@@ -88,7 +88,7 @@ torchshow.show_video(x,
                      dpi=None)
 ```
 
-* **x**: *tensor-like (support both `torch.Tensor` and `np.ndarray`) or List of tensor-like.* The tensor data that we want to visualize.
+* **x**: *tensor-like (Support both `torch.Tensor` and `np.ndarray`) or List of tensor-like.* The tensor data that we want to visualize.
 
 * **display**: *bool*. If set to false, TorchShow will not display the data but return the list of processed data. Use it when you want to visualize them using other libraries such as OpenCV.
 
