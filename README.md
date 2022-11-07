@@ -86,6 +86,7 @@ Please check [this page](./API.md) for detailed API references.
 - [Visualizing Optical Flows](#9-visualizing-optical-flows)
 - [Change Channel Order (RGB/BGR)](#10-change-channel-order-rgbbgr)
 - [Change Unnormalization Presets](#11-change-unnormalization-presets)
+- [Overlay Visualizations](#12-overlay-visualizations)
 
 ### 1. Visualizing Image Tensor
 Visualizing an image-like tensor is not difficult but could be very cumbersome. You usually need to convert the tensor to numpy array with proper shapes. In many cases images were normalized during dataloader, which means that you have to unnormalize it so it can be displayed correctly.
@@ -203,3 +204,25 @@ ts.set_image_mean([0., 0., 0.])
 ts.set_image_std([1., 1., 1.])
 ```
 Note that once this is set, torchshow will use this value for the following visualization. This is useful because usually only a single normalization preset will be used for the entire project.
+
+
+### 12. Overlay Visualizations
+In Computer Vision project there are many times we will be dealing with different representations of the scene, including but not limited to RGB image, depth image, infrared image, semantic mask, instance mask, etc. Sometimes it will be very helpful to overlay these different data for visualization. Since `v0.5.0`, TorchShow provides a very useful API `ts.overlay()` for this purpose.
+
+In the below example we have an RGB image and its corresponding semantic mask. Let's first check what they look like using TorchShow.
+
+```python
+import torchshow as ts
+ts.show(["example_rgb.jpg", "example_category_mask.png"])
+```
+
+![](./imgs/overlay_1.png)
+
+Now I would like to overlay the mask on top of the RGB image to gain more insights, with TorchShow this can be easily done with one line of code.
+
+```python
+import torchshow as ts
+ts.overlay(["example_rgb.jpg", "example_category_mask.png"], alpha=[1, 0.6])
+```
+
+![](./imgs/overlay_2.png)

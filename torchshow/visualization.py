@@ -56,7 +56,7 @@ def set_window_title(fig, title):
     else:
         fig.canvas.manager.set_window_title(title)
 
-def imshow(ax, vis):
+def imshow(ax, vis, alpha=None, extent=None, show_rich_info=True):
     max_rows, max_cols = vis['raw'].shape[:2]
     
     def format_coord(x, y):
@@ -98,9 +98,9 @@ def imshow(ax, vis):
         return "Raw=[{}], Disp=[{}]".format(raw_data_str, disp_data_str)
         # return "testest [" + str(data) + "]"
     
-    artist = ax.imshow(vis['disp'], **vis['plot_cfg'])
+    artist = ax.imshow(vis['disp'], alpha=alpha, extent=extent, **vis['plot_cfg'])
     
-    if config.get('show_rich_info'):
+    if show_rich_info:
         artist.get_cursor_data = get_cursor_data
         artist.format_cursor_data = format_cursor_data
         ax.format_coord = format_coord
@@ -121,6 +121,7 @@ def display_plt(vis_list, **kwargs):
     
     fig = plt.figure(figsize=figsize, dpi=dpi)
     axes = fig.subplots(nrows=nrows, ncols=ncols, squeeze=False)
+    show_rich_info = config.get('show_rich_info')
     # fig, axes = plt.subplots(nrows=nrows, ncols=ncols, squeeze=False)
     set_window_title(fig, 'TorchShow')
     if suptitle:
@@ -129,7 +130,7 @@ def display_plt(vis_list, **kwargs):
     for i, plots_per_row in enumerate(vis_list):
         for j, vis in enumerate(plots_per_row):
             # axes[i, j].imshow(vis, **plot_cfg)
-            imshow(axes[i,j], vis)
+            imshow(axes[i,j], vis, show_rich_info=show_rich_info)
             title_namespace["img_id"] = i*ncols+j
             title_namespace["img_id_from_1"] = title_namespace["img_id"] + 1
             title_namespace["row"] = i
@@ -155,11 +156,48 @@ def display_plt(vis_list, **kwargs):
             os.makedirs(dirname, exist_ok=True)
         fig.savefig(file_path, bbox_inches = 'tight', pad_inches=0)
         plt.close(fig)
+    else: # If the image is saved by ts.save() it will not call plt.show()
+        if not isnotebook():
+            plt.show()
     
-    if not isnotebook():
-        plt.show()
+
+def overlay_plt(vis_list, alpha, save_as, extent, **kwargs):
+    show_axis = kwargs.get('show_axis', False)
+    tight_layout = kwargs.get('tight_layout', True)
+    suptitle = kwargs.get('suptitle', None)
+    axes_title = kwargs.get('axes_title', None)
     
+    figsize = kwargs.get('figsize', None)
+    dpi = kwargs.get('dpi', None)
+    fig = plt.figure(figsize=figsize, dpi=dpi)
+    ax = fig.add_subplot()
+    set_window_title(fig, 'TorchShow')
+    if suptitle:
+        fig.suptitle(suptitle)
     
+    assert len(vis_list) == len(alpha)
+    
+    for vis, a in zip(vis_list, alpha):
+        imshow(ax, vis, alpha=a, extent=extent, show_rich_info=False)
+        
+    if not show_axis:
+        ax.axis('off')
+            
+    if tight_layout:
+        fig.tight_layout()
+        
+    if save_as != None:
+        assert isinstance(save_as, str)
+        dirname = os.path.dirname(save_as)
+        if dirname!='':
+            os.makedirs(dirname, exist_ok=True)
+        fig.savefig(save_as, bbox_inches = 'tight', pad_inches=0)
+        plt.close(fig)
+    else:
+        if not isnotebook():
+            plt.show()
+            
+        
         
 
 def animate_plt(video_list, **kwargs):

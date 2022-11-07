@@ -227,6 +227,14 @@ def test(section):
             pass
         ts.show("test_data/example_image_rotated_by_exif.jpeg")
         ts.show("test_data/example_flow.flo")
+        
+    if section <= 11:
+        print("11 Testing Overlay FUnction")
+        ts.overlay(["test_data/example_rgb.jpg", "test_data/example_category_mask.png"], alpha=[0.8])
+        ts.overlay(["test_data/example_rgb.jpg", "test_data/example_category_mask.png"], alpha=[0.5, 0.5])
+        ts.overlay(["test_data/example_rgb.jpg", "test_data/example_category_mask.png", "test_data/example_flow.flo"], alpha=[0.5, 0.5])
+        ts.overlay(["test_data/example_rgb.jpg", "test_data/example_category_mask.png"], save_as="_torchshow/test_overlay_save.png")
+        # ts.overlay(["test_data/example_rgb.jpg", "test_data/example_category_mask.png"], alpha=[0.5, 1.5])
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
