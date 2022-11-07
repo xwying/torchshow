@@ -88,7 +88,7 @@ torchshow.show_video(x,
                      dpi=None)
 ```
 
-* **x**: *tensor-like (Currently support `torch.Tensor`, `np.ndarray`, and `PIL.Image.Image`) or List of tensor-like.* The tensor data that we want to visualize.
+* **x**: *tensor-like (Support both `torch.Tensor` and `np.ndarray`) or List of tensor-like.* The tensor data that we want to visualize.
 
 * **display**: *bool*. If set to false, TorchShow will not display the data but return the list of processed data. Use it when you want to visualize them using other libraries such as OpenCV.
 
