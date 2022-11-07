@@ -158,3 +158,12 @@ torchshow.set_image_std(std)
 ```
 
 * **std**: *list of number*: Set the channel-wise std when unnormalize the image. The default std is `[1., 1., 1.]`.
+
+---
+
+## torchshow.show_rich_info
+```python
+torchshow.show_rich_info(flag)
+```
+
+* **flag**: *bool*: Whether to show rich info in the interactive window.
