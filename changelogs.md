@@ -1,11 +1,11 @@
 # Changelogs
 
-## Next Version
-- Fix bugs when unnormalize with customize mean and std
+## [2022-11-07] v0.5.0
 - Support specifying the color map for grayscale image. 
 - Support PIL Image.
 - Support filenames. 
 - Addinng `ts.overlay()` API which can be used to blend multiple plots.
+- Fix bugs when unnormalize with customize mean and std
 
 ## [2022-06-30] v0.4.2
 - You can specify the `figsize`, `dpi`, and `subtitle` parameter when calling ts.show(). 
