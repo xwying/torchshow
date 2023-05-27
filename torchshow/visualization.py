@@ -416,7 +416,7 @@ def vis_categorical_mask(x, max_N=256, **kwargs):
     
     cmap = colors.ListedColormap(color_list, N=N)
     
-    x = cmap(x.astype(np.int), alpha=None, bytes=True)[:,:,:3]
+    x = cmap(x.astype(int), alpha=None, bytes=True)[:,:,:3]
     # print(x.shape)
     plot_cfg = dict( interpolation="nearest")
     
