@@ -144,6 +144,20 @@ def test(section):
         ts.show(batch, axes_title="Image ID: {img_id_from_1}")
         ts.show(batch, nrows=4, axes_title="{img_id}-{img_id_from_1}-{row}-{column}")
         ts.show(batch, nrows=4, axes_title="{img_id}-{img_id_from_1}-{row}-{column}", suptitle="Figure 1")
+        
+        print("4.3 List of tensors")
+        list_tensors = list(batch)
+        ts.show(list_tensors)
+        ts.save(list_tensors)
+        ts.show(list_tensors, ncols=3)
+        ts.save(list_tensors, ncols=3)
+        ts.show(list_tensors, nrows=4)
+        ts.save(list_tensors, nrows=4)
+        ts.show(list_tensors, nrows=3, ncols=5)
+        ts.save(list_tensors, nrows=3, ncols=5)
+        ts.show(list_tensors, axes_title="Image ID: {img_id_from_1}")
+        ts.show(list_tensors, nrows=4, axes_title="{img_id}-{img_id_from_1}-{row}-{column}")
+        ts.show(list_tensors, nrows=4, axes_title="{img_id}-{img_id_from_1}-{row}-{column}", suptitle="List of Tensors")
 
     if section <=5:
         print("5.1 Custom Layout")
@@ -165,6 +179,11 @@ def test(section):
         ts.show_video([[video, video2], 
                        [video3]])
         video4 = torch.rand(13,5, 100, 100)
+        list_of_videos = [video, video2, video3, video, video2, video3]
+        ts.show_video(list_of_videos)
+        ts.show_video(list_of_videos, ncols=3)
+        ts.show_video(list_of_videos, nrows=3)
+        ts.show_video(list_of_videos, nrows=2, ncols=8)
         print("6.2 ts.show_video with image") 
         # This test produces unwanted results. Ignore it at this moment unless requested.
         ts.show_video(rgb_img)
