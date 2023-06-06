@@ -68,8 +68,17 @@ def show(x, display=True, **kwargs):
             raise TypeError("Unsupported shape of numpy array {} .".format(x.shape))
         
     elif isinstance(x, list):
-        if isinstance(x[0], np.ndarray): # if the input is list of images [img1, img2], make it [[img1, img2]]
-            vis_list = [x]
+        if isinstance(x[0], np.ndarray): # if the input is list of images [img1, img2, ....]
+            nrows = kwargs.get('nrows', None)
+            ncols = kwargs.get('ncols', None)
+            if (nrows is not None) or (ncols is not None): # If user specified the grid layout
+                N = len(x)
+                # Here we assume either `nrows` or `ncols` must given so we do not have to specify H, W
+                nrows, ncols = calculate_grid_layout(N, None, None, nrows, ncols)
+                assert (nrows * ncols >= N)
+                vis_list = [list(x[i:i + ncols]) for i in range(0, N, ncols)] # vis_list is now a list of list
+            else:    
+                vis_list = [x] # Make it [[img1, img2, ...]] if `nrows` or `ncols` are not specified
         else:
             vis_list = x
 
@@ -111,8 +120,17 @@ def show_video(x, display=True, **kwargs):
         video_list = [[x]] # for a single video, make it [[vid]]
         
     elif isinstance(x, list):
-        if isinstance(x[0], np.ndarray): # if the input is list of array [vid1, vid2], make it [[vid1, vid2]]
-            video_list = [x]
+        if isinstance(x[0], np.ndarray): # if the input is list of array [vid1, vid2, ...]
+            nrows = kwargs.get('nrows', None)
+            ncols = kwargs.get('ncols', None)
+            if (nrows is not None) or (ncols is not None): # If user specified the grid layout
+                N = len(x)
+                # Here we assume either `nrows` or `ncols` must given so we do not have to specify H, W.
+                nrows, ncols = calculate_grid_layout(N, None, None, nrows, ncols)
+                assert (nrows * ncols >= N)
+                video_list = [list(x[i:i + ncols]) for i in range(0, N, ncols)] # video_list is now a list of list
+            else:    
+                video_list = [x] # Make it [[vid1, vid2, ...]] if `nrows` or `ncols` are not specified
         else:
             video_list = x
             

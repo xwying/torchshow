@@ -33,11 +33,11 @@ def calculate_grid_layout(N, img_H, img_W, nrow=None, ncol=None):
     """
     Function to calculate grid_layout
     """
-    if (nrow != None and ncol == None):
+    if (nrow != None): # `nrow` has higher priority than `ncol`.
         ncol = int(np.ceil(N / nrow))
-    elif (nrow == None and ncol != None):
+    elif (ncol != None):
         nrow = int(np.ceil(N / ncol))
-    else:
+    else: # If both nrow and ncols are not set, perform automatic calculation.
         N_sqrt = np.sqrt(N)
         if img_H >= img_W:
             nrow = int(np.floor(N_sqrt))
