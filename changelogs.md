@@ -2,7 +2,7 @@
 
 ## [2023-07-02] v0.5.1
 - Fix `np.int` depreciation issues ([#13](https://github.com/xwying/torchshow/pull/13)).
-- Allow specifying nrows and ncols when visualizing a list of tensors ([#17](https://github.com/xwying/torchshow/pull/17)).
+- Allow specifying `nrows` and `ncols` when visualizing a list of tensors ([#17](https://github.com/xwying/torchshow/pull/17)).
 - Fix unexpected white spaces when saving figures ([#19](https://github.com/xwying/torchshow/pull/19)).
 
 ## [2022-11-07] v0.5.0

@@ -29,7 +29,7 @@ Torchshow automatically infers the type of a tensor such as RGB images, grayscal
 
 ## What's New in v0.5.1
 - Fix `np.int` depreciation issues.
-- Allow specifying nrows and ncols when visualizing a list of tensors.
+- Allow specifying `nrows` and `ncols` when visualizing a list of tensors.
 - Fix unexpected white spaces when saving figures.
 
 See the complete [changelogs](changelogs.md).
