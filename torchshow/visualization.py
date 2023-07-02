@@ -137,6 +137,11 @@ def display_plt(vis_list, **kwargs):
             title_namespace["column"] = j
             if axes_title is not None:
                 axes[i, j].set_title(axes_title.format(**title_namespace))
+    
+    # Delete empty axes            
+    for ax in axes.ravel():
+        if not ax.has_data():
+            fig.delaxes(ax)
            
     if not show_axis:
         for ax in axes.ravel():
@@ -233,6 +238,11 @@ def animate_plt(video_list, **kwargs):
                 plots.append(plot)
             else:
                 plots.append(None)
+    
+    # Delete empty axes
+    for ax in axes.ravel():
+        if not ax.has_data():
+            fig.delaxes(ax)
     
     if not show_axis:
         for ax in axes.ravel():
