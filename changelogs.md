@@ -1,5 +1,8 @@
 # Changelogs
 
+## Next release
+- New color palette that looks brighter and more visually pleasing.
+
 ## [2023-07-02] v0.5.1
 - Fix `np.int` depreciation issues ([#13](https://github.com/xwying/torchshow/pull/13)).
 - Allow specifying `nrows` and `ncols` when visualizing a list of tensors ([#17](https://github.com/xwying/torchshow/pull/17)).

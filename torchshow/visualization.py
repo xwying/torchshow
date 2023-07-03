@@ -25,7 +25,7 @@ AXES_TITLE_FONTDICT = {'fontsize': rcParams['axes.titlesize'],
                        'horizontalalignment': 'center'}
 
 
-def create_color_map(N=256, normalized=False):
+def create_color_map_legacy(N=256, normalized=False):
     
     def bitget(byteval, idx):
         return (byteval & (1 << idx)) != 0
@@ -45,6 +45,24 @@ def create_color_map(N=256, normalized=False):
 
     cmap = cmap/255 if normalized else cmap
     return cmap
+
+
+def create_color_map(N=256, normalized=False):
+    golden_ratio = 0.618033988749895
+    hue = np.mod(np.arange(N-1) * golden_ratio, 1)
+    HSV_tuples = [(h, 0.8, 0.95) for h in hue]
+    RGB_tuples = map(lambda x: colors.hsv_to_rgb(x), HSV_tuples)
+    cmap = np.array(list(RGB_tuples))
+    
+    dtype = 'float32' if normalized else 'uint8'
+    cmap = cmap if normalized else (cmap*255).astype(dtype)
+    
+    # Prepend black color
+    black = np.zeros((1, 3), dtype=dtype)
+    cmap = np.concatenate((black, cmap), axis=0)
+
+    return cmap
+
 
 def set_window_title(fig, title):
     """
@@ -414,8 +432,13 @@ def vis_categorical_mask(x, max_N=256, **kwargs):
     if x.max() > max_N:
         warnings.warn('The maximum value in input is {} which is greater than the default max_N ({}). Automatically adjust max_N to {}.'.format(x.max(), max_N, x.max()))
         max_N = x.max() + 1
+    
+    palette_config = config.get('color_palette')
+    if palette_config == 'legacy':
+        color_list = create_color_map_legacy(N=max_N, normalized=True)
+    else:
+        color_list = create_color_map(N=max_N, normalized=True)
         
-    color_list = create_color_map(N=max_N, normalized=True)
     color_list = np.concatenate([color_list, np.ones((max_N, 1)).astype(np.float32)], axis=1)
     
     if x.min() < 0:
@@ -434,7 +457,3 @@ def vis_categorical_mask(x, max_N=256, **kwargs):
     vis['plot_cfg'] = plot_cfg
     vis['mode'] = 'Categorical'
     return vis
-
-
-if __name__ == "__main__":
-    print(create_color_map())

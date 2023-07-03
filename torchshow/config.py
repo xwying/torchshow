@@ -5,6 +5,7 @@ class Config():
                             'image_std': None,
                             'color_mode': 'rgb',
                             'show_rich_info': True,
+                            'color_palette': 'light',
                             } 
 
     def set(self, key, value):
@@ -27,6 +28,10 @@ def set_image_std(std: list):
 def set_color_mode(value='rgb'):
     assert value in ['rgb', 'bgr']
     config.set('color_mode', value)
+    
+def set_color_palette(value: str):
+    assert value in ['light', 'legacy']
+    config.set('color_palette', value)
     
 def show_rich_info(flag: bool):
     if flag:

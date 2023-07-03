@@ -167,3 +167,12 @@ torchshow.show_rich_info(flag)
 ```
 
 * **flag**: *bool*: Whether to show rich info in the interactive window.
+
+---
+
+## torchshow.set_color_palette
+```python
+torchshow.set_color_palette(palette)
+```
+
+* **palette**: *str*: Change the color palette for categorical mask visualization. Available options: (`light`, `legacy`). Default: `light`.
