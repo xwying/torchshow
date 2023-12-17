@@ -18,12 +18,6 @@ logger = logging.getLogger('TorchShow')
 IMAGENET_MEAN = [0.485, 0.456, 0.406]
 IMAGENET_STD = [0.229, 0.224, 0.225]
 
-AXES_TITLE_FONTDICT = {'fontsize': rcParams['axes.titlesize'],
-                       'fontweight': rcParams['axes.titleweight'],
-                       'color': rcParams['axes.titlecolor'],
-                       'verticalalignment': 'bottom',
-                       'horizontalalignment': 'center'}
-
 
 def create_color_map(N=256, normalized=False):
     
