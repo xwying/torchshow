@@ -1,5 +1,8 @@
 # Changelogs
 
+## Master Branch
+- Modify set_window_title function to avoid version comparison bugs ([#24](https://github.com/xwying/torchshow/issues/24)).
+
 ## [2023-07-02] v0.5.1
 - Fix `np.int` depreciation issues ([#13](https://github.com/xwying/torchshow/pull/13)).
 - Allow specifying `nrows` and `ncols` when visualizing a list of tensors ([#17](https://github.com/xwying/torchshow/pull/17)).

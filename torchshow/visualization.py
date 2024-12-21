@@ -44,11 +44,14 @@ def set_window_title(fig, title):
     """
     Set the title of the figure window (effective when using a interactive backend.)
     """
-    # fig.canvas.set_window_title(title)
-    if matplotlib.__version__ < '3.4':
+    try:
         fig.canvas.set_window_title(title)
-    else:
-        fig.canvas.manager.set_window_title(title)
+    except:
+        try:
+            fig.canvas.manager.set_window_title(title)
+        except:
+            logger.info("Seting window title failed.")
+    
 
 def imshow(ax, vis, alpha=None, extent=None, show_rich_info=True):
     max_rows, max_cols = vis['raw'].shape[:2]
