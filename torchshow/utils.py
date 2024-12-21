@@ -57,7 +57,10 @@ def tensor_to_array(x):
         pass
     else:
         if isinstance(x, torch.Tensor):
-            return x.detach().clone().cpu().numpy()
+            x = x.detach().clone().cpu()
+            if x.dtype in [torch.bfloat16, torch.float16, torch.bool]:
+                x = x.float()
+            return x.numpy()
     
     # ====== PIL Image =======
     try: 

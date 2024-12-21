@@ -2,6 +2,7 @@
 
 ## Master Branch
 - Modify set_window_title function to avoid version comparison bugs ([#24](https://github.com/xwying/torchshow/issues/24)).
+- Support more data dtype for pytorch tensors.
 
 ## [2023-07-02] v0.5.1
 - Fix `np.int` depreciation issues ([#13](https://github.com/xwying/torchshow/pull/13)).
