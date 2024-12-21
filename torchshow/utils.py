@@ -4,9 +4,11 @@ import sys
 import importlib
 import warnings
 import numbers
+import logging
 
 _EXIF_ORIENT = 274
 
+logger = logging.getLogger('TorchShow')
 
 def isnumber(x):
     return isinstance(x, numbers.Number)
@@ -59,6 +61,7 @@ def tensor_to_array(x):
         if isinstance(x, torch.Tensor):
             x = x.detach().clone().cpu()
             if x.dtype in [torch.bfloat16, torch.float16, torch.bool]:
+                logger.warning("The tensor with type \"{}\" was automatically converted to float32 for visualization.".format(x.dtype))
                 x = x.float()
             return x.numpy()
     
