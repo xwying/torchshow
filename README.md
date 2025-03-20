@@ -27,10 +27,9 @@ Torchshow automatically infers the type of a tensor such as RGB images, grayscal
 
 
 
-## What's New in v0.5.1
-- Fix `np.int` depreciation issues.
-- Allow specifying `nrows` and `ncols` when visualizing a list of tensors.
-- Fix unexpected white spaces when saving figures.
+## What's New in v0.5.2
+- Fixed the version comparison bugs in `set_window_title` function ([#24](https://github.com/xwying/torchshow/issues/24)).
+- Support more data dtype for pytorch tensors.
 
 See the complete [changelogs](changelogs.md).
 

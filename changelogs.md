@@ -1,6 +1,6 @@
 # Changelogs
 
-## Master Branch
+## [2025-03-19] v0.5.2
 - Modify set_window_title function to avoid version comparison bugs ([#24](https://github.com/xwying/torchshow/issues/24)).
 - Support more data dtype for pytorch tensors.
 
