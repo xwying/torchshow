@@ -94,7 +94,7 @@ If you need to frequently verify what your tensors look like, TorchShow is a ver
 Using Matplotlib             |  Using TorchShow
 :-------------------------:|:-------------------------:
 ![](./imgs/RGB_image_plt.gif)  |  ![](./imgs/RGB_image_ts.gif)
-|The image tensor has been normalized so Matlotlib cannot display it correctly. | TorchShow does the conversion automatically.|
+|The image tensor has been normalized so Matplotlib cannot display it correctly. | TorchShow does the conversion automatically.|
 
 ### 2. Visualizing Mask Tensors
 For projects related to Semantic Segmentation or Instance Segmentation, we often need to visualize mask tensors -- either ground truth annotations or model's prediction. This can be easily done using TorchShow.
