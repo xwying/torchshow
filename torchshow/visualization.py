@@ -117,7 +117,12 @@ def display_plt(vis_list, **kwargs):
     title_namespace = {}
     
     fig = plt.figure(figsize=figsize, dpi=dpi)
-    axes = fig.subplots(nrows=nrows, ncols=ncols, squeeze=False)
+    has_multiple_axes = nrows > 1 or ncols > 1
+    if has_multiple_axes:
+        axes = fig.subplots(nrows=nrows, ncols=ncols, squeeze=False)
+    else:
+        axes = np.array([[plt.Axes(fig, [0., 0., 1., 1.])]])
+        fig.add_axes(axes[0, 0])
     show_rich_info = config.get('show_rich_info')
     # fig, axes = plt.subplots(nrows=nrows, ncols=ncols, squeeze=False)
     set_window_title(fig, 'TorchShow')
@@ -144,7 +149,7 @@ def display_plt(vis_list, **kwargs):
         for ax in axes.ravel():
             ax.axis('off')
             
-    if tight_layout:
+    if has_multiple_axes and tight_layout:
         fig.tight_layout()
     
     if kwargs.get('save', False):
@@ -387,7 +392,10 @@ def vis_grayscale(x, **kwargs):
     vis['disp'] = x
     cmap = kwargs.get("cmap", "gray")
     plot_cfg = dict(cmap=cmap)
-    
+
+    plot_cfg['vmin'] = kwargs.get("vmin", None)
+    plot_cfg['vmax'] = kwargs.get("vmax", None)
+
     if isinteger(np.unique(x)).all():
         plot_cfg['interpolation'] = 'nearest'
         vis['mode'] = 'Binary'
